@@ -11,6 +11,8 @@ public class Test
       {
           /** Initialise variables **/
           int sum = 0;
+          int max = 0;
+
           ArrayExample anArray = new ArrayExample(20);
           
           /** Read in test data into array **/
@@ -22,6 +24,10 @@ public class Test
           /** Sum up array of values and display **/
           sum = anArray.sumEven();
           System.out.println("\n\nSum of array is " + sum);
+
+          /** Get max value and display **/
+          max = anArray.findMax();
+          System.out.println("\n\nMax number in array is " + max);
           
       }
     

@@ -145,7 +145,6 @@ public int findMax() //Finding the Max
             max = A[i];
         }
     }
-    
     return max;
 }
 
