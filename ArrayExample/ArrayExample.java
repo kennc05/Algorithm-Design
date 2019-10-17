@@ -148,4 +148,25 @@ public int findMax() //Finding the Max
     return max;
 }
 
+/**************************************/
+/*** Finding the  value within an array ***/
+/**************************************/
+public int countRange(int min, int max) //Having a range
+{
+    /*** Initialise count variable ***/
+    
+    int count = 0;
+
+    /** Loop round summing array elements **/
+    for (int i=0;i<usedSize;i++)
+    {
+        /** Add next array value to sum **/
+        if (A[i] > min & A[i] < max)
+        {
+            count+=1;
+        }
+    }
+    return count;
+}
+
 } /** End of ArrayExample Class **/
