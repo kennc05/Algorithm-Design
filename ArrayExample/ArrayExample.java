@@ -177,19 +177,19 @@ public int findMatches() //Having a range
     /*** Initialise count variable ***/
     
     int count = 0;
-    int i = 0;
+
 
     /** Loop round summing array elements **/
-    for (int j=0;i<usedSize;j++)
+    for (int i=0;i<usedSize;i++)
     {
-        /** Add next array value to sum **/
-        if (A[i] == A[j])
+        for (int j=i+1;j<usedSize;j++)
         {
-            count+=1;
+            if (A[i] == A[j])
+            {
+                count+=1;
+            }
         }
     }
-    System.out.println("Element number: " +i);
-    System.out.println("Number for comparasion: " +A[i]);
     return count;
 }
 

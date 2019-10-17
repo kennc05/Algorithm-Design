@@ -13,6 +13,7 @@ public class Test
           int sum = 0;
           int max = 0;
           int count = 0;
+          int match = 0;
 
           ArrayExample anArray = new ArrayExample(20);
           
@@ -36,7 +37,7 @@ public class Test
 
           /** Get no of matches from an element **/
 
-          match = anArray.findMatches(); //Should be 1
+          match = anArray.findMatches(); //Should be 9
           System.out.println("\n\nNumber of matches is: " + match);
           
       }
