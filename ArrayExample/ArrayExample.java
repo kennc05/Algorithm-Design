@@ -107,4 +107,25 @@ public int sumArray()
     return sum;
 }
 
+/**************************************/
+/*** Sum up the values in an array - Even numbers only ***/
+/**************************************/
+public int sumEven() //Even numbers 
+{
+    /*** Initialise sum variable ***/
+    int sum = 0;
+
+    /** Loop round summing array elements **/
+    for (int i=0;i<usedSize;i++)
+    {
+        /** Add next array value to sum **/
+        if (A[i] % 2 == 0) 
+        {
+            sum = sum + A[i];
+        }
+    }
+    
+    return sum;
+}
+
 } /** End of ArrayExample Class **/
