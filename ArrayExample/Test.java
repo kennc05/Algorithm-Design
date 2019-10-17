@@ -12,6 +12,7 @@ public class Test
           /** Initialise variables **/
           int sum = 0;
           int max = 0;
+          int count = 0;
 
           ArrayExample anArray = new ArrayExample(20);
           
@@ -28,6 +29,15 @@ public class Test
           /** Get max value and display **/
           max = anArray.findMax();
           System.out.println("\n\nMax number in array is " + max);
+
+           /** Get count value of how many numbers within a range and display **/
+          count = anArray.countRange(0, 10); //Should return 8
+          System.out.println("\n\nNumber of counts within the specified range is " + count);
+
+          /** Get no of matches from an element **/
+
+          match = anArray.findMatches(); //Should be 1
+          System.out.println("\n\nNumber of matches is: " + match);
           
       }
     
