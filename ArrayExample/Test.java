@@ -20,7 +20,7 @@ public class Test
           anArray.display(10,"Array of Integers");
           
           /** Sum up array of values and display **/
-          sum = anArray.sumArray();
+          sum = anArray.sumEven();
           System.out.println("\n\nSum of array is " + sum);
           
       }

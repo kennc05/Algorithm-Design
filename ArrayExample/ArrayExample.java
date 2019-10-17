@@ -128,4 +128,25 @@ public int sumEven() //Even numbers
     return sum;
 }
 
+/**************************************/
+/*** Finding the maximum value within an array ***/
+/**************************************/
+public int findMax() //Finding the Max
+{
+    /*** Initialise max variable ***/
+    int max = 0;
+
+    /** Loop round summing array elements **/
+    for (int i=0;i<usedSize;i++)
+    {
+        /** Add next array value to sum **/
+        if (A[i] > max)
+        {
+            max = A[i];
+        }
+    }
+    
+    return max;
+}
+
 } /** End of ArrayExample Class **/
