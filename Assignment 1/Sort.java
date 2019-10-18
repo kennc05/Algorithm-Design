@@ -135,6 +135,60 @@ public void insertion()
 
 public void quicksort(int L, int R)
 {
+    int pivot = A[R]; //The pivot element for partitioning
+    
+    //Intialise both left and right pointers which will be used to sort out elements relative to the pivot
+    int leftPointer = A[L]; 
+    int rightPointer = A[R];
+
+    while (leftPointer < rightPointer)
+    {
+        while (A[leftPointer] < pivot)
+        {
+            leftPointer++; //Go to the next element on the right until an element that is more than the pivot is found
+        }
+        while (A[rightPointer] > pivot)
+        {
+            rightPointer--; //Go to the next element on the left until an element that is less than the pivot is found
+        }
+        if (leftPointer < rightPointer) //After both while loops have been completed and pointers haven't crossed, then swap current elements around to correct positions
+        {
+            swap(A[leftPointer], A[rightPointer]);
+        }
+    }
+    
+    swap(A[leftPointer], A[rightPointer]); //Put pivot in correct position
+
+    quicksort(L, pivot-1);
+    quicksort(pivot+1, R);
+}
+
+
+private void swap(int L, int R) 
+{
+    //Swap values around
+    int temp = A[leftPointer]; //Hold the value of left pointer 
+    A[leftPointer] = A[rightPointer]; //Assign value of left pointer to right pointer
+    A[rightPointer] = temp; //Assign the value of left pointer to right pointer
 
 }
+
+/*********************************************/
+/*** Getters / Setters for usedSized for calling quicksort in TestSort.java ***/
+/*********************************************/
+
+
+public int getUsedSize() 
+{
+    return usedSize;
+}
+
+public void setUsedSize(int usedSize) 
+{
+    this.usedSize = usedSize;
+}
+
+
+
+
 }  /** End of Sort Class **/

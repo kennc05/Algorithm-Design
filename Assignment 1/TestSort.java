@@ -27,10 +27,17 @@ public class TestSort
 
         System.out.println("\nInsertion sort testing");
 
-
+        sortTest.readIn("test1.txt");
         sortTest.insertion();
         System.out.println("\n\nInsertion sort comparison counter: " + sortTest.compIS);
         sortTest.display(15, "Insertion sort result"); //15 is amount of numbers in one row
+
+
+        sortTest.readIn("test1.txt");
+        sortTest.quicksort(0, sortTest.getUsedSize()-1);
+
+        System.out.println("\nQuicksort comparison counter: " + sortTest.compQS);
+        sortTest.display(15, "Quick sort result"); //15 is amount of numbers in one row
 
 
     }
