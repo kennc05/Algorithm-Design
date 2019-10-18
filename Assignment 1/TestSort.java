@@ -23,6 +23,16 @@ public class TestSort
         
         /** Display array **/
         sortTest.display(15,"Values in test1.txt");
+
+
+        System.out.println("\nInsertion sort testing");
+
+
+        sortTest.insertionSort();
+
+        sortTest.display(15, "Insertion sort result"); //15 is amount of numbers in one row
+
+
     }
     
 } /** End of TestSort class **/

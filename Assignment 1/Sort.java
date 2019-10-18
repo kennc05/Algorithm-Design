@@ -108,15 +108,27 @@ public void display(int line, String header)
 
 public void insertionSort() 
 {
-    for (int i=0;i<usedSize;i++)
+    System.out.println(usedSize);
+    for (int i=1;i<usedSize;i++)
     {
         int key = A[i]; // Contains the next value to insert
-        int j = i; // Make 
-        while (j>0 & key<A[j-1]) // Find the correct position for the key to insert it 
+        int j = i; // Make j equal to i 
+
+
+        while (j>0 && key<A[j-1]) // Find the correct position for the key to insert it 
         {
-            
+
             A[j] = A[j-1]; // Push the space left
+
+            j=j-1; // Decrement j by 1 to move to previous element
+            
+            System.out.println("\nJ in loop " +j);
+
+
         }
+
+        System.out.println("\nJ out of loop " +j);
+        A[j] = key;
     }
 }
 
