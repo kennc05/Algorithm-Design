@@ -135,41 +135,54 @@ public void insertion()
 
 public void quicksort(int L, int R)
 {
-    int pivot = A[R]; //The pivot element for partitioning
-    
+    if (R > L) 
+    {
+        partition(L, R); //Intial partition
+
+        quicksort(L, partition(L, R)-1);
+        quicksort(partition(L, R)+1, R);
+    }
+}
+
+private int partition(int L, int R)
+{
+    int pivot = A[R]; //The pivot element for partitioning - far rightmost element
+    System.out.println("Pivot "+A[R]);
     //Intialise both left and right pointers which will be used to sort out elements relative to the pivot
-    int leftPointer = A[L]; 
-    int rightPointer = A[R];
+    //These contain the index within the array
+    int leftPointer = L; 
+    int rightPointer = R;
+
 
     while (leftPointer < rightPointer)
     {
         while (A[leftPointer] < pivot)
         {
+            compQS++;
             leftPointer++; //Go to the next element on the right until an element that is more than the pivot is found
         }
-        while (A[rightPointer] > pivot)
+
+        while (A[rightPointer] >= pivot && rightPointer > L)
         {
             rightPointer--; //Go to the next element on the left until an element that is less than the pivot is found
         }
+
         if (leftPointer < rightPointer) //After both while loops have been completed and pointers haven't crossed, then swap current elements around to correct positions
         {
-            swap(A[leftPointer], A[rightPointer]);
+            swap(leftPointer, rightPointer);
         }
     }
-    
-    swap(A[leftPointer], A[rightPointer]); //Put pivot in correct position
+    swap(leftPointer, R);
 
-    quicksort(L, pivot-1);
-    quicksort(pivot+1, R);
+    return leftPointer;
 }
-
 
 private void swap(int L, int R) 
 {
     //Swap values around
-    int temp = A[L]; //Hold the value of left pointer 
-    A[L] = A[R]; //Assign value of left pointer to right pointer
-    A[R] = temp; //Assign the value of left pointer to right pointer
+    int temp = L; //Hold the value of left pointer 
+    L = R; //Assign value of left pointer to right pointer
+    R = temp; //Assign the value of left pointer to right pointer
 
 }
 
