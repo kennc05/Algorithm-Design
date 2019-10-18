@@ -167,9 +167,9 @@ public void quicksort(int L, int R)
 private void swap(int L, int R) 
 {
     //Swap values around
-    int temp = A[leftPointer]; //Hold the value of left pointer 
-    A[leftPointer] = A[rightPointer]; //Assign value of left pointer to right pointer
-    A[rightPointer] = temp; //Assign the value of left pointer to right pointer
+    int temp = A[L]; //Hold the value of left pointer 
+    A[L] = A[R]; //Assign value of left pointer to right pointer
+    A[R] = temp; //Assign the value of left pointer to right pointer
 
 }
 
