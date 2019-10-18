@@ -18,7 +18,7 @@ public class TestSort
         System.out.println("\n\nInsertion sort comparison counter: " + sortTest.compIS);
         System.out.println("Quicksort comparison counter: " + sortTest.compQS);
         
-        /** Read in test datat into array **/
+        /** Read in test data into array **/
         sortTest.readIn("test1.txt");
         
         /** Display array **/

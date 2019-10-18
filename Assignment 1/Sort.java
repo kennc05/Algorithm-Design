@@ -45,6 +45,8 @@ Sort(int max)
     A = new int[size];
 }
 
+
+
 /*********************************************/
 /*** Read a file of integers into an array ***/
 /*********************************************/
@@ -99,5 +101,24 @@ public void display(int line, String header)
         System.out.print(FI.format(A[i])+" ");
     }
 }
+
+/*********************************************/
+/*** Insertion Sort Algorithm ***/
+/*********************************************/
+
+public void insertionSort() 
+{
+    for (int i=0;i<usedSize;i++)
+    {
+        int key = A[i]; // Contains the next value to insert
+        int j = i; // Make 
+        while (j>0 & key<A[j-1]) // Find the correct position for the key to insert it 
+        {
+            
+            A[j] = A[j-1]; // Push the space left
+        }
+    }
+}
+
 
 }  /** End of Sort Class **/
