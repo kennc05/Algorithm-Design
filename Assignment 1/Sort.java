@@ -108,7 +108,6 @@ public void display(int line, String header)
 
 public void insertion() 
 {
-    System.out.println(usedSize);
     for (int i=1;i<usedSize;i++)
     {
         int key = A[i]; // Contains the next value to insert
@@ -134,5 +133,8 @@ public void insertion()
 /*** Quick Sort Algorithm ***/
 /*********************************************/
 
+public void quicksort(int L, int R)
+{
 
+}
 }  /** End of Sort Class **/
