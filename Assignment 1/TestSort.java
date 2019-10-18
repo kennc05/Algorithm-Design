@@ -24,17 +24,17 @@ public class TestSort
         /** Display array **/
         sortTest.display(15,"Values in test1.txt");
 
-/*
+
         System.out.println("\nInsertion sort testing");
-        sortTest.readIn("test.txt");
+        sortTest.readIn("test1.txt");
         sortTest.insertion();
         System.out.println("\nInsertion sort comparison counter: " + sortTest.compIS);
         sortTest.display(15, "Insertion sort results"); //15 is amount of numbers in one row
 
-*/
+
 
         System.out.println("\n\nQuicksort testing");
-        sortTest.readIn("test.txt");
+        sortTest.readIn("test1.txt");
         sortTest.quicksort(0, sortTest.getUsedSize()-1);
         System.out.println("\nQuicksort comparison counter: " + sortTest.compQS);
         sortTest.display(15, "Quick sort results"); //15 is amount of numbers in one row

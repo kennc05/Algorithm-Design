@@ -4,7 +4,7 @@
 /*** methods for implementing sorting algorithms   ***/
 /***                                               ***/
 /***     Initial Author: Jason Steggles 20/09/19   ***/
-/***     Extended by: ?                            ***/
+/***     Extended by: Kenneth Cajigas b7045066     ***/
 /*****************************************************/
 
 import java.io.*;
@@ -119,7 +119,6 @@ public void insertion()
     
         {
             compIS++; //Increment by 1 as a comparasion has been made
-
             A[j] = A[j-1]; // Push the space left
             j=j-1; // Decrement j by 1 to move to previous element
         }
@@ -133,64 +132,65 @@ public void insertion()
 /*** Quick Sort Algorithm ***/
 /*********************************************/
 
+//Quicksort method which will call onto the partition method 
 public void quicksort(int L, int R)
 {
     if (R > L) 
     {
-        partition(L, R); //Intial partition
+        int partitionResult = partition(L, R); //Intial partition stored in Variable to hold the position of pivot from partition
 
-        quicksort(L, partition(L, R)-1);
-        quicksort(partition(L, R)+1, R);
+        quicksort(L, partitionResult-1); //Partion the left portion of the array after sorting elements less than Pivot
+        quicksort(partitionResult+1, R); //Partion the right portion of the array after sorting elements more than Pivot
     }
 }
 
+//The partition function splits the array depending on the pivot. Left < Pivot | Right > Pivot
 private int partition(int L, int R)
 {
+    int temp; //Holds a temp value for swapping values
     int pivot = A[R]; //The pivot element for partitioning - far rightmost element
-    System.out.println("Pivot "+A[R]);
+
     //Intialise both left and right pointers which will be used to sort out elements relative to the pivot
     //These contain the index within the array
     int leftPointer = L; 
     int rightPointer = R;
 
 
-    while (leftPointer < rightPointer)
+    while (leftPointer < rightPointer) //Loop whilst the pointers haven't crossed
     {
         while (A[leftPointer] < pivot)
         {
-            compQS++;
+            compQS++; //Comparasion 1 of array
             leftPointer++; //Go to the next element on the right until an element that is more than the pivot is found
         }
+        compQS++; //Accounts for the comparasion where the loop breaks
 
-        while (A[rightPointer] >= pivot && rightPointer > L)
+        while (A[rightPointer] >= pivot && rightPointer > L) //Prevents the rightPointer from going off the array
         {
+            compQS++; //Comparasion 2 of array
             rightPointer--; //Go to the next element on the left until an element that is less than the pivot is found
         }
+        compQS++; //Accounts for the comparasion where the loop breaks
 
-        if (leftPointer < rightPointer) //After both while loops have been completed and pointers haven't crossed, then swap current elements around to correct positions
+        //Swap elements at index of left and right pointers once both left and right elements in the wrong place are found
+        if (leftPointer < rightPointer) 
         {
-            swap(leftPointer, rightPointer);
+            temp = A[leftPointer];
+            A[leftPointer] = A[rightPointer];
+            A[rightPointer] = temp;
         }
     }
-    swap(leftPointer, R);
 
-    return leftPointer;
-}
+    //Place the pivot in its final position and swap with the element at the left index
+    temp = A[leftPointer];
+    A[leftPointer] = A[R]; 
+    A[R] = temp;
 
-private void swap(int L, int R) 
-{
-    //Swap values around
-    int temp = L; //Hold the value of left pointer 
-    L = R; //Assign value of left pointer to right pointer
-    R = temp; //Assign the value of left pointer to right pointer
+    return leftPointer; //return Pivot position
 
 }
 
-/*********************************************/
-/*** Getters / Setters for usedSized for calling quicksort in TestSort.java ***/
-/*********************************************/
-
-
+// Getters and Setters for usedSized for calling quicksort in TestSort.java
 public int getUsedSize() 
 {
     return usedSize;
@@ -200,6 +200,10 @@ public void setUsedSize(int usedSize)
 {
     this.usedSize = usedSize;
 }
+
+/*********************************************/
+/*** Another Algorithm ***/
+/*********************************************/
 
 
 
