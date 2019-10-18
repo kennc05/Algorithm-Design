@@ -112,23 +112,18 @@ public void insertionSort()
     for (int i=1;i<usedSize;i++)
     {
         int key = A[i]; // Contains the next value to insert
-        int j = i; // Make j equal to i 
+        int j = i; // Make j equal to i  -> J will contain the current index to try and compare
 
 
-        while (j>0 && key<A[j-1]) // Find the correct position for the key to insert it 
+        while (j>0 && key<A[j-1]) // Finds the correct position for the key to insert it. 
+        //This will shift the "space" left until either j has reached element 0, or the key is no longer less than the element before it
+    
         {
-
             A[j] = A[j-1]; // Push the space left
-
             j=j-1; // Decrement j by 1 to move to previous element
-            
-            System.out.println("\nJ in loop " +j);
-
-
         }
 
-        System.out.println("\nJ out of loop " +j);
-        A[j] = key;
+        A[j] = key; //"Insert" the element into its correct position 
     }
 }
 
