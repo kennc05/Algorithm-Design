@@ -28,8 +28,8 @@ public class TestSort
         System.out.println("\nInsertion sort testing");
 
 
-        sortTest.insertionSort();
-
+        sortTest.insertion();
+        System.out.println("\n\nInsertion sort comparison counter: " + sortTest.compIS);
         sortTest.display(15, "Insertion sort result"); //15 is amount of numbers in one row
 
 

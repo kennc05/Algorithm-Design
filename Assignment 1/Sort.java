@@ -106,7 +106,7 @@ public void display(int line, String header)
 /*** Insertion Sort Algorithm ***/
 /*********************************************/
 
-public void insertionSort() 
+public void insertion() 
 {
     System.out.println(usedSize);
     for (int i=1;i<usedSize;i++)
@@ -119,13 +119,20 @@ public void insertionSort()
         //This will shift the "space" left until either j has reached element 0, or the key is no longer less than the element before it
     
         {
+            compIS++; //Increment by 1 as a comparasion has been made
+
             A[j] = A[j-1]; // Push the space left
             j=j-1; // Decrement j by 1 to move to previous element
         }
 
+        compIS++; //Final comparasion before the key is allocated to the correct space
         A[j] = key; //"Insert" the element into its correct position 
     }
 }
+
+/*********************************************/
+/*** Quick Sort Algorithm ***/
+/*********************************************/
 
 
 }  /** End of Sort Class **/
