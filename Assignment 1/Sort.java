@@ -202,10 +202,34 @@ public void setUsedSize(int usedSize)
 }
 
 /*********************************************/
-/*** Another Algorithm ***/
+/*** New Sort Algorithm ***/
 /*********************************************/
 
+public void newsort() 
+{
+    int min;
+    int pos;
+    int i;
+
+    pos = 0;
+
+    while (pos < usedSize) 
+    {
+        min = ;
+    }
+}
+
+private int findMinFrom (int pos)
+{
+    int min;
 
 
+    min = A[pos];
+
+    for (int i=pos+1 < usedSize-1; i++)
+    {
+
+    }
+}
 
 }  /** End of Sort Class **/
