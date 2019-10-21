@@ -89,7 +89,7 @@ public void display(int line, String header)
     System.out.print("\n"+header);
 
     /** Display array data **/
-    for (int i=0;i<usedSize;i++)
+    for (int i=0;i<size;i++)
     {
         /** Check if new line is needed **/
         if (i%line == 0) 
@@ -108,7 +108,7 @@ public void display(int line, String header)
 
 public void insertion() 
 {
-    for (int i=1;i<usedSize;i++)
+    for (int i=1;i<size;i++)
     {
         int key = A[i]; // Contains the next value to insert
         int j = i; // Make j equal to i  -> J will contain the current index to try and compare
@@ -147,9 +147,9 @@ public void quicksort(int L, int R)
 //The partition function splits the array depending on the pivot. Left < Pivot | Right > Pivot
 private int partition(int L, int R)
 {
-    int temp; //Holds a temp value for swapping values
     int pivot = A[R]; //The pivot element for partitioning - far rightmost element
 
+    int temp;
     //Intialise both left and right pointers which will be used to sort out elements relative to the pivot
     //These contain the index within the array
     int leftPointer = L; 
@@ -175,16 +175,17 @@ private int partition(int L, int R)
         //Swap elements at index of left and right pointers once both left and right elements in the wrong place are found
         if (leftPointer < rightPointer) 
         {
-            temp = A[leftPointer];
-            A[leftPointer] = A[rightPointer];
-            A[rightPointer] = temp;
+            swap(leftPointer, rightPointer);
         }
     }
 
     //Place the pivot in its final position and swap with the element at the left index
-    temp = A[leftPointer];
+
+    swap(leftPointer, R);
+
+    /*temp = A[leftPointer];
     A[leftPointer] = A[R]; 
-    A[R] = temp;
+    A[R] = temp; */
 
     return leftPointer; //return Pivot position
 
@@ -207,25 +208,23 @@ public void setUsedSize(int usedSize)
 
 public void newsort() 
 {
-    int min;
-    int pos;
-    int i;
-    int temp;
+    int pos = 0;
 
-    pos = 0;
+    // System.out.println("Size "+usedSize);
 
-    while (pos < usedSize) 
+    while (pos < size) 
     {
-        min = findMinFrom (pos);
+        int min = findMinFrom(pos);
 
-        for (i = pos; i < usedSize - 1; i++)
+        for (int i = pos; i < size; i++)
         {
+            // System.out.println("i " +i);
+            compNS++;
             if (A[i] == min)
             {
-                temp = A[i];
-                A[i] = A[pos];
-                A[pos] = temp;
+                swap(i, pos);
                 pos++; //Increase position by one
+                // System.out.println("Position " +pos);
             }
         }
     }
@@ -233,19 +232,28 @@ public void newsort()
 
 private int findMinFrom (int pos)
 {
-    int min;
+    int min = A[pos];
 
-
-    min = A[pos];
-
-    for (int i=pos+1; i < usedSize-1; i++)
+    for (int i=pos+1; i < size; i++)
     {
+        compNS++;
         if (A[i] < min) //Check if the current element is less than the set minimum 
         {
             min = A[i]; //Set the minimum to the current element
         }
     }
     return min;
+}
+
+/*********************************************/
+/*** Swap method used in all methods ***/
+/*********************************************/
+
+
+private void swap(int a, int b){
+    int temp = A[a];
+    A[a] = A[b];
+    A[b] = temp;
 }
 
 }  /** End of Sort Class **/

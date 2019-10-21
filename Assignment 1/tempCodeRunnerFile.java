@@ -19,7 +19,7 @@ public class TestSort
         System.out.println("Quicksort comparison counter: " + sortTest.compQS);
         
         /** Read in test data into array **/
-        sortTest.readIn("test1.txt");
+        sortTest.readIn("test.txt");
         
         /** Display array **/
         sortTest.display(15,"Values in test1.txt");
