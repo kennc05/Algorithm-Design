@@ -37,8 +37,14 @@ public class TestSort
         sortTest.readIn("test1.txt");
         sortTest.quicksort(0, sortTest.getUsedSize()-1);
         System.out.println("\nQuicksort comparison counter: " + sortTest.compQS);
-        sortTest.display(15, "Quick sort results"); //15 is amount of numbers in one row
+        sortTest.display(15, "Quicksort results"); //15 is amount of numbers in one row
 
+
+        System.out.println("\n\nNewsort testing");
+        sortTest.readIn("test1.txt");
+        sortTest.quicksort(0, sortTest.getUsedSize()-1);
+        System.out.println("\nNewsort comparison counter: " + sortTest.compNS);
+        sortTest.display(15, "Newsort results"); //15 is amount of numbers in one row
 
     }
     

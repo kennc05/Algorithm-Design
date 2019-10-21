@@ -210,12 +210,24 @@ public void newsort()
     int min;
     int pos;
     int i;
+    int temp;
 
     pos = 0;
 
     while (pos < usedSize) 
     {
-        min = ;
+        min = findMinFrom (pos);
+
+        for (i = pos; i < usedSize - 1; i++)
+        {
+            if (A[i] == min)
+            {
+                temp = A[i];
+                A[i] = A[pos];
+                A[pos] = temp;
+                pos++; //Increase position by one
+            }
+        }
     }
 }
 
@@ -226,10 +238,24 @@ private int findMinFrom (int pos)
 
     min = A[pos];
 
-    for (int i=pos+1 < usedSize-1; i++)
+    for (int i=pos+1; i < usedSize-1; i++)
     {
-
+        if (A[i] < min) //Check if the current element is less than the set minimum 
+        {
+            min = A[i]; //Set the minimum to the current element
+        }
     }
+    return min;
 }
 
 }  /** End of Sort Class **/
+
+
+/*
+
+TO DO:
+
+-Implement a swap method
+-Simplify code to make it shorter
+
+*/
