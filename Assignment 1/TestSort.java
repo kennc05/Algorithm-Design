@@ -10,42 +10,43 @@ public class TestSort
 {
 	public static void main(String[] args) 
     {
+
+        /** Intial array */
         Sort sortTest = new Sort(50);
-        
-        /** Some simple tests using class Sort **/
-        
-        /** Display two comparison counters **/
-        System.out.println("\n\nInsertion sort comparison counter: " + sortTest.compIS);
-        System.out.println("Quicksort comparison counter: " + sortTest.compQS);
-        
         /** Read in test data into array **/
         sortTest.readIn("test1.txt");
-        
         /** Display array **/
         sortTest.display(15,"Values in test1.txt");
 
 
-        System.out.println("\nInsertion sort testing");
-        sortTest.readIn("test1.txt");
-        sortTest.insertion();
-        System.out.println("\nInsertion sort comparison counter: " + sortTest.compIS);
-        sortTest.display(15, "Insertion sort results"); //15 is amount of numbers in one row
+        /*****************************************************************************************/
+        /*** Will create new arrays each time, print values after and the comparasion counter ***/
+        /****************************************************************************************/
+
+        System.out.println("\n\n- Insertion sort testing -");
+        Sort insertionSortTest = new Sort(50);
+        insertionSortTest.readIn("test1.txt");
+        insertionSortTest.insertion();
+        insertionSortTest.display(15, "Values after Insertion sort");
+        System.out.println("\nInsertion sort comparison counter: " + insertionSortTest.compIS);
 
 
 
-        System.out.println("\n\nQuicksort testing");
-        sortTest.readIn("test1.txt");
-        sortTest.quicksort(0, sortTest.getUsedSize()-1);
-        System.out.println("\nQuicksort comparison counter: " + sortTest.compQS);
-        sortTest.display(15, "Quicksort results"); //15 is amount of numbers in one row
+        System.out.println("\n\n- Quicksort testing -");
+        Sort quickSortTest = new Sort(50); 
+        quickSortTest.readIn("test1.txt");
+        quickSortTest.quicksort(0, sortTest.getUsedSize()-1);
+        quickSortTest.display(15, "Values after Quick sort");
+        System.out.println("\nQuicksort comparison counter: " + quickSortTest.compQS);
 
 
-        System.out.println("\n\nNewsort testing");
-        sortTest = new Sort(50);
-        sortTest.readIn("test1.txt");
-        sortTest.newsort();
-        System.out.println("\nNewsort comparison counter: " + sortTest.compNS);
-        sortTest.display(15, "Newsort results"); //15 is amount of numbers in one row
+
+        System.out.println("\n\n- Newsort testing -");
+        Sort newSortTest = new Sort(50);
+        newSortTest.readIn("test1.txt");
+        newSortTest.newsort();
+        newSortTest.display(15, "Values after New sort");
+        System.out.println("\nNewsort comparison counter: " + newSortTest.compNS);
     }
 
     
