@@ -45,22 +45,34 @@ public class TestSort
 
         System.out.format("\nThe rest of the tests:\n| %-15s | %-20s | %-20s |\n","Test file","Algorithm","Comparison  counter");
 
+        int max = 0;
+
         for (int i=2; i!=7; i++) //Loop until test6.txt is completed - this will print out a nicely formatted table
         {
+            if (i<4)
+            {
+                max = 50;
+            }
+            else
+            {
+                max = 1000;
+            }
+
+
             System.out.format("| %-15s | %-20s | %-20s |\n","test"+i+".txt","","");
 
 
-            insertionSortTest = new Sort(50);
+            insertionSortTest = new Sort(max);
             insertionSortTest.readIn("test"+i+".txt");
             insertionSortTest.insertion();
             System.out.format("| %-15s | %-20s | %-20s |\n","","Insertion sort",insertionSortTest.compIS);
 
-            quickSortTest = new Sort(50);
+            quickSortTest = new Sort(max);
             quickSortTest.readIn("test"+i+".txt");
             quickSortTest.quicksort(0, quickSortTest.getUsedSize()-1);
             System.out.format("| %-15s | %-20s | %-20s |\n","","Quicksort",quickSortTest.compQS);
 
-            newSortTest = new Sort(50);
+            newSortTest = new Sort(max);
             newSortTest.readIn("test"+i+".txt");
             newSortTest.newsort();
             System.out.format("| %-15s | %-20s | %-20s |\n\n","","Newsort",newSortTest.compNS);

@@ -163,7 +163,7 @@ private int partition(int L, int R)
         while (A[leftPointer] < pivot)
         {
             compQS++; //Comparasion 1 of array
-            leftPointer++; //Go to the next element on the right until an element that is more than the pivot is found
+            leftPointer++; //Go to the next element on the right until an element that is more th§an the pivot is found
         }
         compQS++; //Accounts for the comparasion where the loop breaks
 
