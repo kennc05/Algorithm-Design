@@ -27,9 +27,9 @@ public class TestSort
         System.out.println("\n\n- Quicksort testing test1.txt -");
         Sort quickSortTest = new Sort(50); 
         quickSortTest.readIn("test1.txt");
-        quickSortTest.display(15, "Values before Quick sort");
+        quickSortTest.display(15, "Values before Quicksort");
         quickSortTest.quicksort(0, quickSortTest.getUsedSize()-1);
-        quickSortTest.display(15, "\nValues after Quick sort");
+        quickSortTest.display(15, "\nValues after Quicksort");
         System.out.println("\nQuicksort comparison counter: " + quickSortTest.compQS);
 
 
@@ -37,15 +37,15 @@ public class TestSort
         System.out.println("\n\n- Newsort testing test1.txt -");
         Sort newSortTest = new Sort(50);
         newSortTest.readIn("test1.txt");
-        newSortTest.display(15, "Values before New sort");
+        newSortTest.display(15, "Values before Newsort");
         newSortTest.newsort();
-        newSortTest.display(15, "\nValues after New sort");
+        newSortTest.display(15, "\nValues after Newsort");
         System.out.println("\nNewsort comparison counter: " + newSortTest.compNS);
 
 
-        System.out.format("\nThe rest of the tests:\n| %-15s | %-20s | %-20s |\n","Test file","Algorithm","Comparasion counter");
+        System.out.format("\nThe rest of the tests:\n| %-15s | %-20s | %-20s |\n","Test file","Algorithm","Comparison  counter");
 
-        for (int i=2; i!=7; i++) //Loop until test6.txt is completed
+        for (int i=2; i!=7; i++) //Loop until test6.txt is completed - this will print out a nicely formatted table
         {
             System.out.format("| %-15s | %-20s | %-20s |\n","test"+i+".txt","","");
 
