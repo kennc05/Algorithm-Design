@@ -108,10 +108,10 @@ public void display(int line, String header)
 
 public void insertion() 
 {
-    for (int i=1;i<size;i++)
+    for (int i=1;i<size;i++) //Index to iterate through the array - starts from index 1 as first value is already "inserted"
     {
         int key = A[i]; // Contains the next value to insert
-        int j = i; // Make j equal to i  -> J will contain the current index to try and compare
+        int j = i; // Make j equal to i  -> J will contain the current index to try and compare to the current index
 
 
         while (j>0 && key<A[j-1]) // Finds the correct position for the key to insert it. 
@@ -135,9 +135,11 @@ public void insertion()
 //Quicksort method which will call onto the partition method 
 public void quicksort(int L, int R)
 {
-    if (R > L) 
+    if (R > L) //If the right pointer is more than the left pointer ie if they haven't crossed yet
     {
-        int partitionResult = partition(L, R); //Intial partition stored in Variable to hold the position of pivot from partition
+        int partitionResult = partition(L, R); //Intial partition stored in variable to hold the position of pivot from partition
+
+        //Will recursively partition left side and right side of arrays
 
         quicksort(L, partitionResult-1); //Partion the left portion of the array after sorting elements less than Pivot
         quicksort(partitionResult+1, R); //Partion the right portion of the array after sorting elements more than Pivot
@@ -149,7 +151,7 @@ private int partition(int L, int R)
 {
     int pivot = A[R]; //The pivot element for partitioning - far rightmost element
 
-    int temp;
+
     //Intialise both left and right pointers which will be used to sort out elements relative to the pivot
     //These contain the index within the array
     int leftPointer = L; 
@@ -175,20 +177,13 @@ private int partition(int L, int R)
         //Swap elements at index of left and right pointers once both left and right elements in the wrong place are found
         if (leftPointer < rightPointer) 
         {
-            swap(leftPointer, rightPointer);
+            swap(leftPointer, rightPointer); //Swap the elements if they have crossed
         }
     }
 
-    //Place the pivot in its final position and swap with the element at the left index
-
-    swap(leftPointer, R);
-
-    /*temp = A[leftPointer];
-    A[leftPointer] = A[R]; 
-    A[R] = temp; */
+    swap(leftPointer, R); //Place the pivot in its final position and swap with the element at the left index
 
     return leftPointer; //return Pivot position
-
 }
 
 // Getters and Setters for usedSized for calling quicksort in TestSort.java
@@ -208,45 +203,42 @@ public void setUsedSize(int usedSize)
 
 public void newsort() 
 {
-    int pos = 0;
+    int pos = 0; //Set inital value to 0
 
-    // System.out.println("Size "+usedSize);
-
-    while (pos < size) 
+    while (pos < size) //A while loop which continues until the pos variable is less than the size specified
     {
         int min = findMinFrom(pos);
 
-        for (int i = pos; i < size; i++)
+        for (int i = pos; i < size; i++) //Make i equal to value of pos and then add by 1 each time
         {
-            // System.out.println("i " +i);
-            compNS++;
             if (A[i] == min)
             {
                 swap(i, pos);
                 pos++; //Increase position by one
                 // System.out.println("Position " +pos);
             }
+            compNS++; //Comparasion 1 which involves an array element
         }
     }
 }
 
 private int findMinFrom (int pos)
 {
-    int min = A[pos];
+    int min = A[pos]; //Set the current minimum to be the constructor value of pos
 
     for (int i=pos+1; i < size; i++)
     {
-        compNS++;
         if (A[i] < min) //Check if the current element is less than the set minimum 
         {
             min = A[i]; //Set the minimum to the current element
         }
+        compNS++; //Comparasion 2 which involves an array element
     }
     return min;
 }
 
 /*********************************************/
-/*** Swap method used in all methods ***/
+/*** Swap method used in all Quicksort and Newsort ***/
 /*********************************************/
 
 
