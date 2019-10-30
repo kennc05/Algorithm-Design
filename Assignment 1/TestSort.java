@@ -2,7 +2,7 @@
 /*************************************************/
 /***  Simple test class for Sort class         ***/
 /***                                           ***/
-/***  Author: Kenneth Cajigas 10/10/2019       ***/
+/***  Author: Kenneth Cajigas 30/10/2019       ***/
 /*************************************************/
 
 
@@ -47,20 +47,11 @@ public class TestSort
 
         int max = 0;
 
-        for (int i=2; i!=7; i++) //Loop until test6.txt is completed - this will print out a nicely formatted table
+        for (int i=2; i<7; i++) //Loop until test6.txt is completed - this will print out a nicely formatted table
         {
-            if (i<4)
-            {
-                max = 50;
-            }
-            else
-            {
-                max = 1000;
-            }
-
+            max = (i<4) ? 50: 1000; //Set the max no of values for the array in sort - in test files 1-3 this is 50 and tests 4-6 this is 1000
 
             System.out.format("| %-15s | %-20s | %-20s |\n","test"+i+".txt","","");
-
 
             insertionSortTest = new Sort(max);
             insertionSortTest.readIn("test"+i+".txt");
@@ -79,5 +70,5 @@ public class TestSort
         }
 
     }
-    
+
 } /** End of TestSort class **/
