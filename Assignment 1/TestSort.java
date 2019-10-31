@@ -2,7 +2,7 @@
 /*************************************************/
 /***  Simple test class for Sort class         ***/
 /***                                           ***/
-/***  Author: Kenneth Cajigas 10/10/2019       ***/
+/***  Author: Kenneth Cajigas 170450661        ***/
 /*************************************************/
 
 
@@ -49,15 +49,7 @@ public class TestSort
 
         for (int i=2; i!=7; i++) //Loop until test6.txt is completed - this will print out a nicely formatted table
         {
-            if (i<4)
-            {
-                max = 50;
-            }
-            else
-            {
-                max = 1000;
-            }
-
+            max = i<4 ? 50 : 1000; //Set what the max no. of elements will be. For test files 2-3 this will be 50 and 4-6 will be 1000.
 
             System.out.format("| %-15s | %-20s | %-20s |\n","test"+i+".txt","","");
 

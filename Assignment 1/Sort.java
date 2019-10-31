@@ -4,7 +4,7 @@
 /*** methods for implementing sorting algorithms   ***/
 /***                                               ***/
 /***     Initial Author: Jason Steggles 20/09/19   ***/
-/***     Extended by: Kenneth Cajigas b7045066     ***/
+/***     Extended by: Kenneth Cajigas 170450661    ***/
 /*****************************************************/
 
 import java.io.*;
