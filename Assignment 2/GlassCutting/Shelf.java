@@ -67,13 +67,38 @@ public class Shelf {
 		return usedWidth;
 	}
 
-	//HELPER FUNCTION ADDED - check that a shape can be added in with height
+	//HELPER FUNCTION ADDED - check that a shape can be added in checking height and width
 	public boolean checkAddShapeToShelf(Shape shape, Sheet currentSheet) {
-		if (shape.getHeight() <= getHeight()) {
-			place(shape);
+		if (shape.getHeight() <= getHeight() && shape.getWidth() <= (currentSheet.getWidth() - getWidth())) {
+			place(shape); //place the shape on the shelf
+			System.out.println("Shape has been added in!!");
 			return true;
 		}
 		return false;
 	}
 
+	//Attempts to add a shape to shelf (1) By its original orientation (2) By its rotated orientation
+	public boolean attemptAddToShelf (Shape shape, Sheet currentSheet) {
+		if(!checkAddShapeToShelf(shape, currentSheet)) {
+			//If it wasn't added in successfully then rotate shape and try again
+			shape.rotateShape();
+			System.out.println("Rotating shape");
+			if (!checkAddShapeToShelf(shape, currentSheet)) {
+				//If it still failed, then rotate shape back to original orientation
+				System.out.println("Rotating shape back to original orientation");
+				shape.rotateShape();
+				return false;
+			}
+		}
+		return true; //if it was added, then return true
+	}
+
+	//Another one...
+	public void rotateShelf () {
+		int tempWidth = usedWidth;
+
+		usedWidth = shelfHeight;
+		shelfHeight = tempWidth;
+
+	}
 }

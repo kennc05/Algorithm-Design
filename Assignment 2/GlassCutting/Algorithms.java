@@ -41,94 +41,51 @@ public class Algorithms {
 		 * specification
 		 */
 
+		//Define the current sheet + shelf being worked on based on next fit
 		Sheet currentSheet = new Sheet();
 		Shelf currentShelf = new Shelf();
-
+	
+		int count = 0;
 		for (Shape currentShape : shapes) //for every shape in the shapes list
 		{
-
 			//Check if the current shelf is empty
+			System.out.println("Adding in shape " +count);
 			if (currentShelf.getShapes().isEmpty()) {
 				currentShelf.place(currentShape); //Place the first shape on a shelf
+				count++;
 				continue;
 			}
 
-			//ADD SHAPE STAGE 1:
-			//Check that the shape can fit onto the current shelf
+			//Try to add a shape to a current shelf
 
-			boolean shapeAddedToCurrentShelf = false;
+			System.out.println("Check 2");
+			count++;
 
-			while(!shapeAddedToCurrentShelf) {
+		
+			if(!currentShelf.attemptAddToShelf(currentShape, currentSheet)) {
+			//If original and rotated orientation of shape doesn't fit still 
+			//The shelf is considered full up - make a new one
 				
-
-			}
-			
-			
+				System.out.println("add to shelf failed, adding current shelf to sheet");
 
 
-		}
-			
 
-	
-
-
-			/*
-			if (currentShelf.checkPlace(currentShape) && currentShape.getWidth() < (currentSheet.getWidth() - currentShelf.getWidth())){ //check that the shape can fit in the shelf
-				continue; //break out of the loop if it fits
-
-
-			} else {
-				//If it fails, try to rotate the shape and check if it fits in
-				
-				System.out.println("Rotate shape before. Height: "+currentShape.getHeight()+" | Width: "+currentShape.getWidth());
-				currentShape.rotateShape();
-				System.out.println("Rotate shape after. Height: "+currentShape.getHeight()+" | Width: "+currentShape.getWidth());
-				
-				if (currentShelf.checkPlace(currentShape) && currentShape.getWidth() < (currentSheet.getWidth() - currentShelf.getWidth())) {
-					continue; //break out of the loop if it fits
+				if(!currentSheet.attemptAddToSheet(currentShelf)) {
+					System.out.println("add to sheet failed, making a new sheet");
+					usedSheets.add(currentSheet);
+					currentSheet = new Sheet(); //make a new sheet 
+					currentSheet.addShelf(currentShelf);
 				}
-			}
 
-			//At this point it still hasn't fit after rotating. The shelf is considered filled. 
-			//Check if you can add the filled shelf to the sheet,  then create a new shelf
-			
-			currentShape.rotateShape(); //rotate shape back 
-
-
-			//try to add the filled up shelf to a sheet  - if it returns false, then create a new sheet then add the shelf to the sheet
-			if (!currentSheet.checkAddShelf(currentShelf)) { 
-				usedSheets.add(currentSheet); //Add the current sheet
-				currentSheet = new Sheet(); //create a brand new sheet
-				currentSheet.addShelf(currentShelf); //add the shelf to the new sheet
-			}
-
-			//Creating a new shelf to put the current shape into
-			currentShelf = new Shelf(); //make a new shelf
-			currentShelf.place(currentShape); //Add the new shape to the new shelf
-
-			if (shapes.get(shapes.size() - 1) == currentShape) 
-			{
-				currentSheet.addShelf(currentShelf);
+				currentShelf = new Shelf();
+				currentShelf.place(currentShape);
 			}
 		}
-
-		*/
-
+		
+		//Add the last created sheet to the 
+		currentSheet.addShelf(currentShelf);
+		usedSheets.add(currentSheet); 
 		return usedSheets;
-	}
-
-	public boolean checkAddShelfToSheet (Shelf currentShelf, Sheet currentSheet) {
-		if (currentShelf.getHeight() <= currentSheet.allShelvesHeight()) {
-			/* 
-			If it can fit: 
-			1. Add the shelf to the current sheet
-			*/
-
-			currentSheet.addShelf(currentShelf);
-			return true;
-		}
-
-		return false;
 	}
 
 	/**

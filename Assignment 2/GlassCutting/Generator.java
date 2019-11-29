@@ -30,9 +30,9 @@ public class Generator {
 
 		shapes.add(new Shape(82, 60));
 		shapes.add(new Shape(10, 130));
-		shapes.add(new Shape(182, 71));
+	    shapes.add(new Shape(182, 71));
 		shapes.add(new Shape(172, 82));
-		shapes.add(new Shape(293, 27));
+		shapes.add(new Shape(293, 27)); 
 		
 		//Random randomtInt = new Random();
 

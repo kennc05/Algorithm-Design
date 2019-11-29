@@ -75,11 +75,22 @@ public class Sheet {
 
 	//HELPER FUNCTION ADDED - check if you can add shelf to a sheet
 	public boolean checkAddShelf (Shelf shelf) {
-		if (shelf.getHeight() < getHeight() - allShelvesHeight()) {
+		if (shelf.getHeight() <= (getHeight() - allShelvesHeight())) {
 			addShelf(shelf);
 			return true;
 		}
 		return false;
 	}
 
+	public boolean attemptAddToSheet (Shelf shelf) {
+		if(!checkAddShelf(shelf)) {
+			shelf.rotateShelf(); //try rotate and see if it fits
+			if(!checkAddShelf(shelf)) { //check again and see if it fits
+				System.out.println("Rec call checkAddShelf");
+				shelf.rotateShelf(); //Go back to original orientation
+				return false;
+			}
+		}
+		return true; //return false regardless
+	}
 }

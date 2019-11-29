@@ -37,10 +37,15 @@ public class CorrectnessTest {
 		Generator generatedValues = new Generator();
 
 
+		
 		usedSheets = algorithmsTest.nextFit(generatedValues.generateShapeList(5));
 		for (Sheet currentSheet : usedSheets) {
-			System.out.println(currentSheet.allShelvesHeight());
+			System.out.println("Sheet " +currentSheet.allShelvesHeight());
+			System.out.println("Has  " + currentSheet.getShelves().size() + " shelves");
 		}
+
+
+
 
 
 
