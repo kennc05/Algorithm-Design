@@ -73,4 +73,13 @@ public class Sheet {
 		return SHEET_WIDTH ;
 	}
 
+	//HELPER FUNCTION ADDED - check if you can add shelf to a sheet
+	public boolean checkAddShelf (Shelf shelf) {
+		if (shelf.getHeight() < getHeight() - allShelvesHeight()) {
+			addShelf(shelf);
+			return true;
+		}
+		return false;
+	}
+
 }

@@ -7,6 +7,10 @@
  * @since 30/10/2019 extended by @author
  */
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class CorrectnessTest {
 	public static void main(String[] args) {
 		System.out.println("*********************************************");
@@ -20,5 +24,26 @@ public class CorrectnessTest {
 		 * Think about normal cases and border cases. 
 		 * You can use any additional method you created in this class
 		 */
+
+
+		System.out.println("*********************************************");
+		System.out.println("*********** nextFit() testing *************");
+		System.out.println("*********************************************");
+		System.out.println();
+
+		List<Sheet> usedSheets = new ArrayList<Sheet>();
+
+		Algorithms algorithmsTest = new Algorithms();
+		Generator generatedValues = new Generator();
+
+
+		usedSheets = algorithmsTest.nextFit(generatedValues.generateShapeList(5));
+		for (Sheet currentSheet : usedSheets) {
+			System.out.println(currentSheet.allShelvesHeight());
+		}
+
+
+
+
 	}
 }

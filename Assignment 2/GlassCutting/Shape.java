@@ -49,4 +49,14 @@ public class Shape implements Comparable<Shape> {
 		// You may want to implement this method
 		return 0;
 	}
+
+	//Rotate shape 90 degrees by swapping width and height 
+
+	public void rotateShape () {
+		int tempWidth = sWidth;
+
+		sWidth = sHeight;
+		sHeight = tempWidth;
+
+	}
 }

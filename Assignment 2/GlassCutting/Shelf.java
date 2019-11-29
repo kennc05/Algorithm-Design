@@ -67,4 +67,13 @@ public class Shelf {
 		return usedWidth;
 	}
 
+	//HELPER FUNCTION ADDED - check that a shape can be added in with height
+	public boolean checkAddShapeToShelf(Shape shape, Sheet currentSheet) {
+		if (shape.getHeight() <= getHeight()) {
+			place(shape);
+			return true;
+		}
+		return false;
+	}
+
 }

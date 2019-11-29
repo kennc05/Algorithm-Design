@@ -28,31 +28,30 @@ public class Generator {
 
 		List<Shape> shapes = new ArrayList<Shape>();
 
-		shapes.add(new Shape(82, 60));
-		shapes.add(new Shape(10, 130));
-		shapes.add(new Shape(182, 71));
-		shapes.add(new Shape(172, 82));
-		shapes.add(new Shape(293, 27));
-		
-		//Random randomtInt = new Random();
+		//no of shapes to add to array list will be passed to the constructor here
+		//Need to randomly generate a new rectangle with a random width and height below the max 
+		Random randomtInt = new Random();
 
-		/*for (int i = 0; i < numberOfShapes; i++) //Create a set number of shapes to generate
+		for (int i = 0; i < numberOfShapes; i++)
 		 {
-			int height = randomtInt.nextInt(MAX_SIZE_HEIGHT) + 1; //Start from 1 to (MAX_SIZE_HEIGHT-1)
-			int width = randomtInt.nextInt(MAX_SIZE_WIDTH) + 1; //Start from 1 - (MAX_SIZE_WIDTH-1)
+			 int height = randomtInt.nextInt(MAX_SIZE_HEIGHT + 1) + 1; //Start from 1 - MAX_SIZE_HEIGHT
+			 int width = randomtInt.nextInt(MAX_SIZE_WIDTH + 1) + 1; //Start from 1 - MAX_SIZE_WIDTH
+			 System.out.println("height: " +height);
 
-			System.out.println("Shape "+i+" Height: "+height+" | Width: "+width);
-			shapes.add(new Shape(width, height)); //Add to the shape list
+ 		 	 shapes.add(new Shape(100, 100));
 		 }
+ 
+		/*
+		 * THIS METHOD CURRENTLY RETURNS AN EMPTY LIST SO YOU WILL NEED TO ADD
+		 * IN YOUR OWN CODE TO GENERATE A LIST OF SHAPES randomly
 		 */
-
-		 int i = 0;
-		 for(Shape currentShape : shapes) {
-			System.out.println("Shape "+i+" Height: "+currentShape.getHeight()+" | Width: "+currentShape.getWidth());
-			i++;
-		}
-
-
 		return shapes;
 	}
+
+	public static void main(String[] args) {
+		Generator test = new Generator();
+		
+		test.generateShapeList(100);
+	}
+
 }
