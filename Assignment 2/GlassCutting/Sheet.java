@@ -70,27 +70,34 @@ public class Sheet {
 	 * @return width
 	 */
 	public int getWidth() {
-		return SHEET_WIDTH ;
+		return SHEET_WIDTH;
 	}
 
 	//HELPER FUNCTION ADDED - check if you can add shelf to a sheet
-	public boolean checkAddShelf (Shelf shelf) {
+	public boolean checkAddShelfToSheet (Shelf shelf) {
+		System.out.println("Shelf height is "+shelf.getHeight());
+		System.out.println("Checking remaining height: "+(getHeight() - allShelvesHeight()));
 		if (shelf.getHeight() <= (getHeight() - allShelvesHeight())) {
-			addShelf(shelf);
 			return true;
 		}
 		return false;
 	}
 
+
+
+
+
+	
+	//HELPER FUNCTION: Attempts to add a shelf to sheet - ONLY with its first shape in it (1) By its original orientation (2) If it fails, by its rotated orientation
 	public boolean attemptAddToSheet (Shelf shelf) {
-		if(!checkAddShelf(shelf)) {
+		if(!checkAddShelfToSheet(shelf)) {
 			shelf.rotateShelf(); //try rotate and see if it fits
-			if(!checkAddShelf(shelf)) { //check again and see if it fits
+			if(!checkAddShelfToSheet(shelf)) { //check again and see if it fits
 				System.out.println("Rec call checkAddShelf");
 				shelf.rotateShelf(); //Go back to original orientation
 				return false;
 			}
 		}
-		return true; //return false regardless
+		return true; 
 	}
 }

@@ -67,7 +67,7 @@ public class Shelf {
 		return usedWidth;
 	}
 
-	//HELPER FUNCTION ADDED - check that a shape can be added in checking height and width
+	//HELPER FUNCTION: Check that a shape can be added in checking against its height and width
 	public boolean checkAddShapeToShelf(Shape shape, Sheet currentSheet) {
 		if (shape.getHeight() <= getHeight() && shape.getWidth() <= (currentSheet.getWidth() - getWidth())) {
 			place(shape); //place the shape on the shelf
@@ -77,14 +77,14 @@ public class Shelf {
 		return false;
 	}
 
-	//Attempts to add a shape to shelf (1) By its original orientation (2) By its rotated orientation
+	//HELPER FUNCTION: Attempts to add a shape to shelf (1) By its original orientation (2) If it fails, by its rotated orientation
 	public boolean attemptAddToShelf (Shape shape, Sheet currentSheet) {
 		if(!checkAddShapeToShelf(shape, currentSheet)) {
 			//If it wasn't added in successfully then rotate shape and try again
 			shape.rotateShape();
 			System.out.println("Rotating shape");
 			if (!checkAddShapeToShelf(shape, currentSheet)) {
-				//If it still failed, then rotate shape back to original orientation
+				//If it still failed, then rotate shape back to original orientation and return false
 				System.out.println("Rotating shape back to original orientation");
 				shape.rotateShape();
 				return false;
@@ -93,7 +93,7 @@ public class Shelf {
 		return true; //if it was added, then return true
 	}
 
-	//Another one...
+	//HELPER FUNCTION: When there is only one shape in a shelf, and it doesn't fit a sheet in its original orientation, this will be used
 	public void rotateShelf () {
 		int tempWidth = usedWidth;
 
