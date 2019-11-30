@@ -29,21 +29,22 @@ public class Generator {
 		List<Shape> shapes = new ArrayList<Shape>();
 
 		
-		/*
+		
 		shapes.add(new Shape(82, 60));
 		shapes.add(new Shape(10, 130));
 	    shapes.add(new Shape(182, 71));
 		shapes.add(new Shape(172, 82));
 		shapes.add(new Shape(293, 27)); 
-		*/
-
+		shapes.add(new Shape(293, 27)); 
 		
+
+		/*
 		shapes.add(new Shape(300, 250));
 		shapes.add(new Shape(10, 35));
 	    shapes.add(new Shape(100, 110));
 		shapes.add(new Shape(147, 210));
 		shapes.add(new Shape(115, 25)); 
-		
+		*/
 		
 		//Random randomtInt = new Random();
 

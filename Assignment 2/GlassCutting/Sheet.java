@@ -76,7 +76,7 @@ public class Sheet {
 	//HELPER FUNCTION ADDED - check if you can add shelf to a sheet
 	public boolean checkAddShelfToSheet (Shelf shelf) {
 		System.out.println("Shelf height is "+shelf.getHeight());
-		System.out.println("Checking remaining height: "+(getHeight() - allShelvesHeight()));
+		System.out.println("Checking remaining height before: "+(getHeight() - allShelvesHeight()));
 		if (shelf.getHeight() <= (getHeight() - allShelvesHeight())) {
 			return true;
 		}
@@ -85,18 +85,13 @@ public class Sheet {
 
 
 
-
-
-	
 	//HELPER FUNCTION: Attempts to add a shelf to sheet - ONLY with its first shape in it (1) By its original orientation (2) If it fails, by its rotated orientation
-	public boolean attemptAddToSheet (Shelf shelf) {
-		if(!checkAddShelfToSheet(shelf)) {
-			shelf.rotateShelf(); //try rotate and see if it fits
-			if(!checkAddShelfToSheet(shelf)) { //check again and see if it fits
-				System.out.println("Rec call checkAddShelf");
-				shelf.rotateShelf(); //Go back to original orientation
-				return false;
-			}
+	public boolean attemptRotateShelf (Shelf shelf) {
+		shelf.rotateShelf(); //try rotate and see if it fits
+		if(!checkAddShelfToSheet(shelf)) { //check again and see if it fits
+			System.out.println("Rec call checkAddShelf");
+			shelf.rotateShelf(); //Go back to original orientation
+			return false;
 		}
 		return true; 
 	}
