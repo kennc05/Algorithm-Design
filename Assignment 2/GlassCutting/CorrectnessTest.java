@@ -39,6 +39,7 @@ public class CorrectnessTest {
 
 		
 		usedSheets = algorithmsTest.nextFit(generatedValues.generateShapeList(5));
+		System.out.println("Used sheets is "+usedSheets.size());
 		for (Sheet currentSheet : usedSheets) {
 			System.out.println("Sheet " +currentSheet.allShelvesHeight());
 			System.out.println("Sheet max height is "+currentSheet.getHeight());

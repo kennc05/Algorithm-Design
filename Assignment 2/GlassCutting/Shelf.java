@@ -67,30 +67,55 @@ public class Shelf {
 		return usedWidth;
 	}
 
-	//HELPER FUNCTION: Check that a shape can be added in checking against its height and width
+	//HELPER FUNCTION: Check that a shape can be added in checking against its height and width + number of shapes in a sheet
 	public boolean checkAddShapeToShelf(Shape currentShape, Sheet currentSheet) {
 		if (currentShape.getHeight() <= getHeight() && currentShape.getWidth() <= (currentSheet.getWidth() - getWidth())) {
 			place(currentShape); //place the shape on the shelf
-			System.out.println("Shape has been added in to shelf!!");
+			System.out.println("Shape has been added in to shelf!");
 			return true;
 		}
 		return false;
 	}
 
-	//HELPER FUNCTION: Attempts to add a shape to shelf (1) By its original orientation (2) If it fails, by its rotated orientation
+	//HELPER FUNCTION: Attempts to add a shape to shelf. Checks if the shape limit has been reached first. 
+	//If the limit hasn't been reached then: Add shape (1) By its original orientation (2) If it fails, by its rotated orientation
 	public boolean attemptAddShapeToShelf (Shape currentShape, Sheet currentSheet) {
+		System.out.println("Checking remaining shape limit: " + (currentSheet.checkShapeLimit() - getShapes().size()));
+
+		if(getShapes().size() == 0) {
+			place(currentShape);
+			return true;
+		}
+
+		if(getShapes().size() + 1 > currentSheet.checkShapeLimit()) {
+			System.out.println("Shape limit reached! Adding in shape will mean sheet has " +(getShapes().size() + 1));
+			return false;
+		}
+
+
+
+	
 		if(!checkAddShapeToShelf(currentShape, currentSheet)) {
 			//If it wasn't added in successfully then rotate shape and try again
-			currentShape.rotateShape();
+			
 			System.out.println("Rotating shape");
+			currentShape.rotateShape();
 			if (!checkAddShapeToShelf(currentShape, currentSheet)) {
 				//If it still failed, then rotate shape back to original orientation and return false
 				System.out.println("Rotating shape back to original orientation");
-				currentShape.rotateShape();
+				//currentShape.rotateShape();
 				return false;
 			}
 		}
+
+
 		return true; //if it was added, then return true
+	}
+
+	public void rotateShapeThenAdd(Shape currentShape) {
+		currentShape.rotateShape();
+		place(currentShape);
+		System.out.println("Shape rotated first then added to sheet");
 	}
 
 	//HELPER FUNCTION: When there is only one shape in a shelf, and it doesn't fit a sheet in its original orientation, this will be used
