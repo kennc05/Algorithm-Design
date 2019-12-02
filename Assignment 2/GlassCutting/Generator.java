@@ -38,17 +38,17 @@ public class Generator {
 		shapes.add(new Shape(293, 27)); 
 		*/
 
-		/*
+		
 		shapes.add(new Shape(300, 250));
 		shapes.add(new Shape(10, 35));
 	    shapes.add(new Shape(100, 110));
 		shapes.add(new Shape(147, 210));
 		shapes.add(new Shape(115, 25)); 
-		*/
+		
 
 		//Check shape limit
 
-		
+		/*
 		shapes.add(new Shape(10, 10));
 		shapes.add(new Shape(10, 10));
 		shapes.add(new Shape(10, 10));
@@ -71,7 +71,7 @@ public class Generator {
 		shapes.add(new Shape(10, 10));
 		shapes.add(new Shape(10, 10));
 		shapes.add(new Shape(10, 10));
-		
+		*/
 		
 		//Random randomtInt = new Random();
 

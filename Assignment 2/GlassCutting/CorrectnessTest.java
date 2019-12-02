@@ -39,18 +39,13 @@ public class CorrectnessTest {
 
 		
 		usedSheets = algorithmsTest.nextFit(generatedValues.generateShapeList(5));
-		System.out.println("Used sheets is "+usedSheets.size());
+		System.out.println("Used number of sheets: "+usedSheets.size());
+
+		int sheetCount = 1;
 		for (Sheet currentSheet : usedSheets) {
-			System.out.println("Sheet " +currentSheet.allShelvesHeight());
-			System.out.println("Sheet max height is "+currentSheet.getHeight());
-			System.out.println("Has  " + currentSheet.getShelves().size() + " shelves");
+			System.out.println("Sheet "+sheetCount);
+			currentSheet.printSheet();
+			sheetCount++;
 		}
-
-
-
-
-
-
-
 	}
 }
