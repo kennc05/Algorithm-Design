@@ -18,6 +18,11 @@ public class CorrectnessTest {
 		System.out.println("*********************************************");
 		System.out.println();
 
+		List<Sheet> usedSheets = new ArrayList<Sheet>();
+
+		Algorithms algorithmsTest = new Algorithms();
+		Generator generatedValues = new Generator();
+
 		/*
 		 * Here you will need to validate that your algorithms (nextFit() and
 		 * firstFit()) behave as expected on small data sets. 
@@ -25,7 +30,7 @@ public class CorrectnessTest {
 		 * You can use any additional method you created in this class
 		 */
 
-
+		/*
 		System.out.println("*********************************************");
 		System.out.println("*********** nextFit() testing *************");
 		System.out.println("*********************************************");
@@ -36,9 +41,8 @@ public class CorrectnessTest {
 		Algorithms algorithmsTest = new Algorithms();
 		Generator generatedValues = new Generator();
 
-
-		
 		usedSheets = algorithmsTest.nextFit(generatedValues.generateShapeList(5));
+
 		System.out.println("Used number of sheets: "+usedSheets.size());
 
 		int sheetCount = 1;
@@ -47,5 +51,27 @@ public class CorrectnessTest {
 			currentSheet.printSheet();
 			sheetCount++;
 		}
+		
+		*/
+
+		System.out.println("*********************************************");
+		System.out.println("*********** firstFit() testing *************");
+		System.out.println("*********************************************");
+		System.out.println();
+
+		List<Sheet> usedSheets1 = new ArrayList<Sheet>();
+	
+		
+		usedSheets1 = algorithmsTest.firstFit(generatedValues.generateShapeList(5));
+
+		System.out.println("Used number of sheets for first fit: "+usedSheets1.size());
+		int sheetCount = 1;
+
+		for (Sheet currentSheet : usedSheets1) {
+			System.out.println("Sheet "+sheetCount);
+			currentSheet.printSheet();
+			sheetCount++;
+		}
 	}
+
 }

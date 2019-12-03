@@ -73,8 +73,8 @@ public class Sheet {
 		return SHEET_WIDTH;
 	}
 
-	//HELPER FUNCTION ADDED - check if you can add shelf to a sheet
-	public boolean checkAddShelfToSheet (Shelf shelf) {
+	//HELPER FUNCTION ADDED for nextFit() - check if you can add shelf to a sheet
+	public boolean attemptAddShelfToSheet (Shelf shelf) {
 		System.out.println("Shelf height is "+shelf.getHeight());
 		System.out.println("Checking remaining height before adding shelf: "+(getHeight() - allShelvesHeight()));
 		System.out.println("Checking if shape limit has been reached. Allowed shapes left: "+checkShapeLimit());
@@ -88,21 +88,20 @@ public class Sheet {
 		return false;
 	}
 
-	//HELPER FUNCTION: Attempts to add a shelf to sheet - ONLY with its first shape in it (1) By its original orientation (2) If it fails, by its rotated orientation
+
+	//HELPER FUNCTION for nextFit(): Attempts to add a shelf to sheet - ONLY with its first shape in it (1) By its original orientation (2) If it fails, by its rotated orientation
 	public boolean attemptRotateShelf (Shelf shelf) {
-		shelf.rotateShelf(); //try rotate and see if it fit
-		System.out.println("Rotating shelf to see if it fits");
-		if(!checkAddShelfToSheet(shelf)) { //check again and see if it fits
-			System.out.println("Rotated shelf doesn't help");
-			//shelf.rotateShelf(); //Go back to original orientation
+		shelf.rotateShelf(); //rotate the shape in the shelf 
+		if(!attemptAddShelfToSheet(shelf)) { //if it still doesn't fit
+			shelf.rotateShelf(); //Go back to original orientation
 			return false;
 		}
-		System.out.println("Rotating shelf helps!!");
+
+		System.out.println("Rotating shape in shelf does help!!");
 		return true; 
 	}
 
 	//HELPER FUNCTION: Check how many more shapes can be added
-
 	public int checkShapeLimit () {
 		int allowedShapes = SHAPE_LIMIT; //How many more shapes can be added to a sheet
 		for (Shelf currentShelf : this.shelves) {
@@ -125,5 +124,4 @@ public class Sheet {
 		System.out.println("Number of shelves: "+getShelves().size());
 		System.out.println("Height of all shelves: "+allShelvesHeight());
 	}
-
 }
