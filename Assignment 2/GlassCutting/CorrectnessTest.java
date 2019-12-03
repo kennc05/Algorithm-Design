@@ -22,7 +22,6 @@ public class CorrectnessTest {
 
 		Algorithms algorithmsTest = new Algorithms();
 		Generator generatedValues = new Generator();
-		int sheetCount = 1;
 
 		/*
 		 * Here you will need to validate that your algorithms (nextFit() and
@@ -31,40 +30,33 @@ public class CorrectnessTest {
 		 * You can use any additional method you created in this class
 		 */
 
-		
-		System.out.println("*********************************************");
-		System.out.println("*********** nextFit() testing *************");
-		System.out.println("*********************************************");
-		System.out.println();
+		System.out.println("\n*********** nextFit() testing ************* \n");
+		usedSheets = algorithmsTest.nextFit(generatedValues.generateShapeList(10));
+		System.out.println("Used number of sheets for next fit: "+usedSheets.size());
 
-		usedSheets = algorithmsTest.nextFit(generatedValues.generateShapeList(5));
-
-		System.out.println("Used number of sheets: "+usedSheets.size());
-
-		
+		int sheetCount = 1;
 		for (Sheet currentSheet : usedSheets) {
-			System.out.println("Sheet "+sheetCount);
+			System.out.println("\n********************************************* \n");
+			System.out.println("Sheet "+sheetCount+" information\n");
+			System.out.printf("Sheet "+sheetCount);
 			currentSheet.printSheet();
 			sheetCount++;
 		}
 		
 
-		System.out.println("*********************************************");
-		System.out.println("*********** firstFit() testing *************");
-		System.out.println("*********************************************");
-		System.out.println();
-
-		
-		usedSheets = algorithmsTest.firstFit(generatedValues.generateShapeList(5));
-
+		System.out.println("\n*********** firstFit() testing ************* \n");
+		usedSheets = algorithmsTest.firstFit(generatedValues.generateShapeList(10));
 		System.out.println("Used number of sheets for first fit: "+usedSheets.size());
 		
-		sheetCount = 1;
+		sheetCount = 1; //Reset sheet count
 		for (Sheet currentSheet : usedSheets) {
-			System.out.println("Sheet "+sheetCount);
+			System.out.println("\n********************************************* \n");
+			System.out.println("Sheet "+sheetCount+" information\n");
+			System.out.printf("Sheet "+sheetCount);
 			currentSheet.printSheet();
 			sheetCount++;
 		}
+
 	}
 
 }

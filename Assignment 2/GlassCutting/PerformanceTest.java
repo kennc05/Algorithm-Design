@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Purpose: The PerformanceTest class is used to compare the implemented
  *           algorithms in term of time and the number of sheets used
@@ -5,8 +8,7 @@
  *           You can add additional methods if you need to in this class
  * 
  * @author RYK
- * @since 30/10/2019
- * extended by @author
+ * @since 30/10/2019 extended by @author
  */
 
 public class PerformanceTest {
@@ -42,18 +44,79 @@ public class PerformanceTest {
 		 * average time and sheets needed for each run
 		 **/
 
+
+		double[] resultsNextFitTime = new double[5];
+		double[] resultsNextFitSheets = new double[5];
+
+		double[] resultsFirstFitTime = new double[5];
+		double[] resultsFirstFitSheets = new double[5];
+
 		// total number of tests - you need to CHANGE this value
-		int noOfTests = 0;
+		int noOfTests = 5;
 
 		// number of repetitions for each test - you need to CHANGE this value
-		int noOfRep = 0;
+
+		//Run each test 5 times
+		int noOfRep = 5;
 
 		// number of shapes needed for the first run - you need to CHANGE this
 		// value
-		int noOfShapes = 0;
+		int noOfShapes = 10000;
 
 		// the increment in the number of shapes - you need to CHANGE this value
-		int increment = 0;
+		int increment = 10000;
 
+		for(int i = 0; i < noOfTests; i++) {
+			//Test number of sheets used by algoritms
+
+			double avgSheetsUsed = 0.0;
+			double avgTimeTaken = 0.0;
+
+			Generator generateShapes = new Generator();
+			Algorithms algorithmsTest = new Algorithms();
+
+			List<Sheet> usedSheets = new ArrayList<Sheet>();
+			List<Shape> generatedShapes = new ArrayList<Shape>();
+
+			generatedShapes = generateShapes.generateShapeList(noOfShapes);
+
+
+			//Test nextFit()
+			for (int j = 0; j < noOfRep; j++) {//Repeat a test several times
+				usedSheets = algorithmsTest.nextFit(generatedShapes);
+				System.out.println("Size of sheets is "+usedSheets.size());
+				avgSheetsUsed += usedSheets.size();
+			}
+
+			avgSheetsUsed = avgSheetsUsed / noOfRep;
+			resultsNextFitSheets[i] = avgSheetsUsed;
+
+
+
+
+
+			avgSheetsUsed = 0.0; //reset
+
+			//Test firstFit()
+			for (int j = 0; j < noOfRep; j++) {//Repeat a test several times
+				usedSheets = algorithmsTest.nextFit(generatedShapes);
+				avgSheetsUsed += usedSheets.size();
+			}
+
+			avgSheetsUsed = avgSheetsUsed / noOfRep;
+			resultsFirstFitSheets[i] = avgSheetsUsed;
+
+			noOfShapes += increment; //Increment number of shapes to generate for next test
+		}
+
+
+		noOfShapes = 10000;
+		System.out.printf("%-30s | %-20s | %-20s | %-20s | %-20s |\n", "", "nextFit()", "", "firstFit()", "");
+		System.out.printf("%-30s | %-20s | %-20s | %-20s | %-20s |\n", "Test number + shapes", "Avg time taken", "Avg sheets used", "Avg time taken", "Avg sheets used");
+
+		for (int i = 0; i < noOfTests; i++) {
+			System.out.printf("%-30s | %-20s | %-20s | %-20s | %-20s |\n", "Test "+i+" Shapes:"+noOfShapes, "", resultsNextFitSheets[i], "", resultsFirstFitSheets[i]);
+			noOfShapes += increment;
+		}
 	}
 }

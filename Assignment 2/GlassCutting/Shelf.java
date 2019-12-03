@@ -70,7 +70,7 @@ public class Shelf {
 	//HELPER FUNCTION: Validate that a shape can be added in checking against its height and width
 	public boolean checkAddShapeToShelf(Shape currentShape, Sheet currentSheet) {
 		System.out.println("Checking the width that can be added: " +currentShape.getWidth()+ " vs "+(currentSheet.getWidth() - getWidth()));
-		
+
 		if (currentShape.getHeight() <= getHeight() && currentShape.getWidth() <= (currentSheet.getWidth() - getWidth())) {
 			place(currentShape); //place the shape on the shelf
 			System.out.println("Shape has been added in to shelf!!");
@@ -79,7 +79,8 @@ public class Shelf {
 		return false;
 	}
 
-	//HELPER FUNCTION: Attempts to add a shape to shelf. Checks if the shape limit has been reached first. 
+	//HELPER FUNCTION: Attempts to add a shape to shelf, if it is the first shape on shelf, then add it.
+	//It also checks if the shape limit has been reached first. 
 	//If the limit hasn't been reached then: Add shape (1) By its original orientation (2) If it fails, by its rotated orientation
 	public boolean attemptAddShapeToShelf (Shape currentShape, Sheet currentSheet) {
 		System.out.println("Remaining shapes that can be added: " + (currentSheet.checkShapeLimit() - getShapes().size()));
@@ -113,5 +114,17 @@ public class Shelf {
 	//to rotate the shape 
 	public void rotateShelf () {
 		shapes.get(0).rotateShape();
+	}
+
+	//HELPER FUNCTION: To output information about a shelf
+	public void outputShelf () {
+		
+		System.out.printf("%-5s - %-17s | %-17s | %-17s |\n", "", "Height used: "+getHeight(), "Width: "+usedWidth, "Shapes: "+getShapes().size());
+		int shapeCount = 1;
+		for (Shape currentShape : shapes) {
+			System.out.printf("Shape "+shapeCount);
+			currentShape.outputShape();
+			shapeCount++;
+		}
 	}
 }

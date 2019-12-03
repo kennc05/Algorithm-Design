@@ -73,13 +73,12 @@ public class Sheet {
 		return SHEET_WIDTH;
 	}
 
-	//HELPER FUNCTION ADDED - validate if a shelf can fit in sheet by height and shape limit
-	public boolean attemptAddShelfToSheet (Shelf shelf) {
+	//HELPER FUNCTION ADDED - validate if a shelf can fit in sheet by height
+	public boolean checkAddShelfToSheet (Shelf shelf) {
 		System.out.println("Shelf height is "+shelf.getHeight());
-		System.out.println("Checking remaining height before adding shelf: "+(getHeight() - allShelvesHeight()));
-		System.out.println("Checking if shape limit has been reached. Allowed shapes left: "+checkShapeLimit());
+		System.out.println("Checking remaining height allowed before adding shelf: "+(getHeight() - allShelvesHeight()));
 
-		if (shelf.getHeight() <= (getHeight() - allShelvesHeight()) && checkShapeLimit() != 0) {
+		if (shelf.getHeight() <= (getHeight() - allShelvesHeight())) {
 			return true;
 		}
 
@@ -87,13 +86,17 @@ public class Sheet {
 		return false;
 	}
 
-	//HELPER FUNCTION: Attempts to add a shelf to sheet - ONLY with its first shape in it by its rotated orientation. If it fails, then it will rotate the shape in the shelf back
-	public boolean attemptRotateShelf (Shelf shelf) {
-		shelf.rotateShelf(); //rotate the shape in the shelf 
-		if(!attemptAddShelfToSheet(shelf)) { //if it still doesn't fit
+	//HELPER FUNCTION: Attempts to add a shelf to sheet
+	//This tries to see if a shelf with one shape can fit in a sheet. If it fails, then it will try rotating it
+	public boolean attemptAddShelfToSheet (Shelf shelf) {
+		if(!checkAddShelfToSheet(shelf)) { //if it still doesn't fit
 			shelf.rotateShelf(); //Go back to original orientation
-			return false;
+			if(!checkAddShelfToSheet(shelf)) { //if it still doesn't fit
+				shelf.rotateShelf(); //Go back to original orientation
+				return false;
+			}
 		}
+
 		System.out.println("Rotating shape in shelf does help!!");
 		return true; 
 	}
@@ -106,11 +109,18 @@ public class Sheet {
 		}
 		return allowedShapes;
 	}
-	
+
 	//HELPER FUNCTION: Output information about the sheet
 	public void printSheet() {
-		System.out.println("Shapes in sheet: "+(SHAPE_LIMIT - checkShapeLimit()));
-		System.out.println("Number of shelves: "+getShelves().size());
-		System.out.println("Height of all shelves: "+allShelvesHeight());
+		
+		System.out.printf("%-5s - %-17s | %-17s | %-17s |\n", "", "Total height: "+allShelvesHeight(), "Shapes: "+(SHAPE_LIMIT - checkShapeLimit()), "Shelves: "+getShelves().size());
+		int shelfCount = 1;
+		for (Shelf currentShelf : shelves) {
+			System.out.printf("\nShelf "+shelfCount);
+			currentShelf.outputShelf();
+			shelfCount++;
+		}
+
+		
 	}
 }
