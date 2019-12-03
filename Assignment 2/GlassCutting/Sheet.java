@@ -75,14 +75,14 @@ public class Sheet {
 
 	//HELPER FUNCTION ADDED - validate if a shelf can fit in sheet by height
 	public boolean checkAddShelfToSheet (Shelf shelf) {
-		System.out.println("Shelf height is "+shelf.getHeight());
-		System.out.println("Checking remaining height allowed before adding shelf: "+(getHeight() - allShelvesHeight()));
+		//System.out.println("Shelf height is "+shelf.getHeight());
+		//System.out.println("Checking remaining height allowed before adding shelf: "+(getHeight() - allShelvesHeight()));
 
 		if (shelf.getHeight() <= (getHeight() - allShelvesHeight())) {
 			return true;
 		}
 
-		System.out.println("Shelf can't fit - either too big or limit reached");
+		//System.out.println("Shelf can't fit - either too big or limit reached");
 		return false;
 	}
 
@@ -97,7 +97,7 @@ public class Sheet {
 			}
 		}
 
-		System.out.println("Rotating shape in shelf does help!!");
+		//System.out.println("Rotating shape in shelf does help!!");
 		return true; 
 	}
 

@@ -40,6 +40,7 @@ public class Generator {
 
 		*/
 
+		/*
 		shapes.add(new Shape(300, 250));
 		shapes.add(new Shape(10, 35));
 	    shapes.add(new Shape(100, 110));
@@ -114,8 +115,8 @@ public class Generator {
 		shapes.add(new Shape(262, 17));
 
 
+		*/
 
-/*
 		Random randomtInt = new Random();
 
 		for (int i = 0; i < numberOfShapes; i++) //Create a set number of shapes to generate
@@ -123,18 +124,18 @@ public class Generator {
 			int height = randomtInt.nextInt(MAX_SIZE_HEIGHT) + 1; //Start from 1 to (MAX_SIZE_HEIGHT-1)
 			int width = randomtInt.nextInt(MAX_SIZE_WIDTH) + 1; //Start from 1 - (MAX_SIZE_WIDTH-1)
 
-			System.out.println("Shape "+i+" Height: "+height+" | Width: "+width);
+			//System.out.println("Shape "+i+" Height: "+height+" | Width: "+width);
 			shapes.add(new Shape(width, height)); //Add to the shape list
 		 }
 		 
-*/
-		 
+		 /*
 		 int i = 0;
 		 System.out.println("Shapes added: \n");
 		 for(Shape currentShape : shapes) {
 			System.out.println("Shape "+i+" Height: "+currentShape.getHeight()+" | Width: "+currentShape.getWidth());
 			i++;
 		 }
+		 */
 		 
 		return shapes;
 	}

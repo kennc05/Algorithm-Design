@@ -69,11 +69,11 @@ public class Shelf {
 
 	//HELPER FUNCTION: Validate that a shape can be added in checking against its height and width
 	public boolean checkAddShapeToShelf(Shape currentShape, Sheet currentSheet) {
-		System.out.println("Checking the width that can be added: " +currentShape.getWidth()+ " vs "+(currentSheet.getWidth() - getWidth()));
+		//System.out.println("Checking the width that can be added: " +currentShape.getWidth()+ " vs "+(currentSheet.getWidth() - getWidth()));
 
 		if (currentShape.getHeight() <= getHeight() && currentShape.getWidth() <= (currentSheet.getWidth() - getWidth())) {
 			place(currentShape); //place the shape on the shelf
-			System.out.println("Shape has been added in to shelf!!");
+			//System.out.println("Shape has been added in to shelf!!");
 			return true;
 		}
 		return false;
@@ -83,7 +83,7 @@ public class Shelf {
 	//It also checks if the shape limit has been reached first. 
 	//If the limit hasn't been reached then: Add shape (1) By its original orientation (2) If it fails, by its rotated orientation
 	public boolean attemptAddShapeToShelf (Shape currentShape, Sheet currentSheet) {
-		System.out.println("Remaining shapes that can be added: " + (currentSheet.checkShapeLimit() - getShapes().size()));
+		//System.out.println("Remaining shapes that can be added: " + (currentSheet.checkShapeLimit() - getShapes().size()));
 
 		if(getShapes().size() == 0) {
 			place(currentShape);
@@ -91,18 +91,18 @@ public class Shelf {
 		}
 
 		if(getShapes().size() + 1 > currentSheet.checkShapeLimit()) {
-			System.out.println("Shape limit reached! Adding in shape will mean sheet has " +(getShapes().size() + 1)+" shapes");
+			//System.out.println("Shape limit reached! Adding in shape will mean sheet has " +(getShapes().size() + 1)+" shapes");
 			return false;
 		}
 
 		if(!checkAddShapeToShelf(currentShape, currentSheet)) {
 			//If it wasn't added in successfully then rotate shape and try again
 			
-			System.out.println("Rotating shape");
+			//System.out.println("Rotating shape");
 			currentShape.rotateShape();
 			if (!checkAddShapeToShelf(currentShape, currentSheet)) {
 				//If it still failed, then rotate shape back to original orientation and return false
-				System.out.println("Rotating shape back to original orientation");
+				//System.out.println("Rotating shape back to original orientation");
 				currentShape.rotateShape();
 				return false;
 			}
