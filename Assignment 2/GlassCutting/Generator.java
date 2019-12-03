@@ -38,13 +38,13 @@ public class Generator {
 		shapes.add(new Shape(293, 27)); 
 		*/
 
-		
+		/*
 		shapes.add(new Shape(300, 250));
 		shapes.add(new Shape(10, 35));
 	    shapes.add(new Shape(100, 110));
 		shapes.add(new Shape(147, 210));
 		shapes.add(new Shape(115, 25)); 
-		
+		*/
 
 		//Check shape limit
 
@@ -95,7 +95,13 @@ public class Generator {
 		shapes.add(new Shape(50, 250));
 		*/
 
-		/*		
+		shapes.add(new Shape(224, 74));
+		shapes.add(new Shape(247, 216));
+		shapes.add(new Shape(67, 121));
+		shapes.add(new Shape(9, 182));
+		shapes.add(new Shape(178, 169));
+
+		/*
 		Random randomtInt = new Random();
 
 		for (int i = 0; i < numberOfShapes; i++) //Create a set number of shapes to generate

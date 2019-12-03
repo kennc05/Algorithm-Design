@@ -73,7 +73,7 @@ public class Sheet {
 		return SHEET_WIDTH;
 	}
 
-	//HELPER FUNCTION ADDED for nextFit() - check if you can add shelf to a sheet
+	//HELPER FUNCTION ADDED - validate if a shelf can fit in sheet by height and shape limit
 	public boolean attemptAddShelfToSheet (Shelf shelf) {
 		System.out.println("Shelf height is "+shelf.getHeight());
 		System.out.println("Checking remaining height before adding shelf: "+(getHeight() - allShelvesHeight()));
@@ -83,20 +83,17 @@ public class Sheet {
 			return true;
 		}
 
-		
 		System.out.println("Shelf can't fit - either too big or limit reached");
 		return false;
 	}
 
-
-	//HELPER FUNCTION for nextFit(): Attempts to add a shelf to sheet - ONLY with its first shape in it (1) By its original orientation (2) If it fails, by its rotated orientation
+	//HELPER FUNCTION: Attempts to add a shelf to sheet - ONLY with its first shape in it by its rotated orientation. If it fails, then it will rotate the shape in the shelf back
 	public boolean attemptRotateShelf (Shelf shelf) {
 		shelf.rotateShelf(); //rotate the shape in the shelf 
 		if(!attemptAddShelfToSheet(shelf)) { //if it still doesn't fit
 			shelf.rotateShelf(); //Go back to original orientation
 			return false;
 		}
-
 		System.out.println("Rotating shape in shelf does help!!");
 		return true; 
 	}
@@ -109,18 +106,10 @@ public class Sheet {
 		}
 		return allowedShapes;
 	}
-
-	public int checkTotalShapes () {
-		int count = 0;
-		for (Shelf currentShelf : this.shelves) {
-			count += currentShelf.getShapes().size();
-		}
-		return count;
-	}
-
+	
 	//HELPER FUNCTION: Output information about the sheet
 	public void printSheet() {
-		System.out.println("Shapes in sheet: "+checkTotalShapes());
+		System.out.println("Shapes in sheet: "+(SHAPE_LIMIT - checkShapeLimit()));
 		System.out.println("Number of shelves: "+getShelves().size());
 		System.out.println("Height of all shelves: "+allShelvesHeight());
 	}

@@ -1,2 +1,1 @@
-
-				currentShelf = new Shelf();
+		shapeAdded = false;
