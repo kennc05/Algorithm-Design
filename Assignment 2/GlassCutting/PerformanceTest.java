@@ -72,8 +72,8 @@ public class PerformanceTest {
 			List<Shape> generatedShapes = new ArrayList<Shape>();
 
 			//Variables which will hold the results after the tests complete on each algorithm
-			double avgSheetsUsed = 0.0;
 			double avgTimeTaken = 0.0;
+			double avgSheetsUsed = 0.0;
 
 			generatedShapes = generateShapes.generateShapeList(noOfShapes); //The list of shapes that will be passed to the algorithm
 
@@ -87,29 +87,31 @@ public class PerformanceTest {
 			}
 
 			//Calculate the averages and add to results array
-			avgSheetsUsed = avgSheetsUsed / noOfRep;
 			avgTimeTaken = avgTimeTaken / noOfRep;
-			resultsNextFitSheets[i] = avgSheetsUsed;
 			resultsNextFitTime[i] = avgTimeTaken;
+			
+			avgSheetsUsed = avgSheetsUsed / noOfRep;
+			resultsNextFitSheets[i] = avgSheetsUsed;
 
 			//Reset values
-			avgSheetsUsed = 0.0;
 			avgTimeTaken = 0.0;
+			avgSheetsUsed = 0.0;
 
 			//Test firstFit()
 			for (int j = 0; j < noOfRep; j++) { //Repeat a test several times
 				long startTime = System.currentTimeMillis();
 				usedSheets = algorithmsTest.firstFit(generatedShapes);
-				long elapsedTime = System.currentTimeMillis() - startTime; //Millseconds - need to divide by 1000 to get seconds
+				long elapsedTime = System.currentTimeMillis() - startTime;
 				avgTimeTaken += elapsedTime;
 				avgSheetsUsed += usedSheets.size();
 			}
 
 			//Calculate the averages and add to results array
-			avgSheetsUsed = avgSheetsUsed / noOfRep;
 			avgTimeTaken = avgTimeTaken / noOfRep;
-			resultsFirstFitSheets[i] = avgSheetsUsed;
 			resultsFirstFitTime[i] = avgTimeTaken;
+
+			avgSheetsUsed = avgSheetsUsed / noOfRep;
+			resultsFirstFitSheets[i] = avgSheetsUsed;
 
 			noOfShapes += increment; //Increment number of shapes to generate for next test
 		}
@@ -119,8 +121,8 @@ public class PerformanceTest {
 		System.out.printf("%-30s | %-20s | %-20s | %-20s | %-20s |\n", "", "nextFit()", "", "firstFit()", "");
 		System.out.printf("%-30s | %-20s | %-20s | %-20s | %-20s |\n", "Test number & Shapes", "Avg time taken (ms)", "Avg sheets used", "Avg time taken (ms)", "Avg sheets used");
 
-		for (int i = 1; i < noOfTests; i++) {
-			System.out.printf("%-30s | %-20s | %-20s | %-20s | %-20s |\n", "Test "+i+" - Shapes(n): "+noOfShapes, resultsNextFitTime[i], resultsNextFitSheets[i], resultsFirstFitTime[i], resultsFirstFitSheets[i]);
+		for (int i = 0; i < noOfTests; i++) {
+			System.out.printf("%-30s | %-20s | %-20s | %-20s | %-20s |\n", "Test "+(i + 1)+" - Shapes(n): "+noOfShapes, resultsNextFitTime[i], resultsNextFitSheets[i], resultsFirstFitTime[i], resultsFirstFitSheets[i]);
 			noOfShapes += increment;
 		}
 	}

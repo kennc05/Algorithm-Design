@@ -40,7 +40,7 @@ public class Generator {
 
 		*/
 
-		/*
+		
 		shapes.add(new Shape(300, 250));
 		shapes.add(new Shape(10, 35));
 	    shapes.add(new Shape(100, 110));
@@ -115,7 +115,8 @@ public class Generator {
 		shapes.add(new Shape(262, 17));
 
 
-		*/
+		
+		
 
 		Random randomtInt = new Random();
 

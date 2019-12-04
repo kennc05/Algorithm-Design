@@ -1,1 +1,1 @@
-		shapeAdded = false;
+public static void main(String[] args) {
