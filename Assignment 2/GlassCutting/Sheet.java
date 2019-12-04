@@ -96,8 +96,7 @@ public class Sheet {
 				return false;
 			}
 		}
-
-		//System.out.println("Rotating shape in shelf does help!!");
+		//Rotating shape in shelf does help and it gets added in
 		return true; 
 	}
 

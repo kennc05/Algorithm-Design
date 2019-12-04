@@ -112,19 +112,15 @@ public class Algorithms {
 		Shelf currentShelf = new Shelf();
 
 
-		int count = 0;
 		for (Shape currentShape : shapes) //for every shape in the shapes list
 		{
 			Boolean shapeAdded = false; //This will indicate if a shape was added to a shelf / sheet 
-			//System.out.println("Attempting to add shape "+count);
 
 			//If the current sheet is empty, then add shape to empty shelf and add to sheet
 			if (currentSheet.getShelves().size() == 0) {
 				currentShelf.place(currentShape);
 				currentSheet.addShelf(currentShelf);
 				usedSheets.add(currentSheet);
-				//System.out.println ("Added first shape to first sheet");
-				count++;
 				continue;
 			}
 			
@@ -133,21 +129,15 @@ public class Algorithms {
 			//If its not the first shape then
 			//Go through every shelf in every sheet to find a fit for shape
 				for(int i = 0; i < usedSheets.size() && !shapeAdded; i++){
-
-					//System.out.println("Going into sheet "+i);
 					currentSheet = usedSheets.get(i); //Get the next current sheet
-					//System.out.println("No of shelves available is "+currentSheet.getShelves().size());
 	
 					//Go through every shelf within that sheet to add a shape
 					for(int j = 0; j < currentSheet.getShelves().size() && !shapeAdded; j++){
-						//Try to add current shape to current shelf
-						//System.out.println("Going into shelf "+j);
 						currentShelf = currentSheet.getShelves().get(j);
 	
-						//Try to add a shape to the current shelf
+						//Try to add current shape to current shelf
 						if (currentShelf.attemptAddShapeToShelf(currentShape, currentSheet)) {
 							shapeAdded = true;
-							count++;
 						}
 					}
 				}
@@ -164,9 +154,7 @@ public class Algorithms {
 
 					if(currentSheet.attemptAddShelfToSheet(currentShelf)) { //Shelf can be added to sheet
 						currentSheet.addShelf(currentShelf); //Add the shelf to the sheet - whether rotated or not
-						//System.out.println("Shelf was added to sheet!");
 						shapeAdded = true;
-						count++;
 					}
 					//Loop if the shelf can't be added
 				}
@@ -179,8 +167,6 @@ public class Algorithms {
 				currentSheet = new Sheet();
 				currentSheet.addShelf(currentShelf);
 				usedSheets.add(currentSheet);  
-				//System.out.println("Number of sheets used is now "+usedSheets.size());
-				count++;
 			}
 		}
 		return usedSheets;
