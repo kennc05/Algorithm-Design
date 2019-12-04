@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 /**
  * @Purpose: The shape class represents a single shape. DO NOT MODIFY THE
  *           SIGNITURE OF EXISTING METHODS, You may add additional methods if
@@ -49,7 +51,28 @@ public class Shape implements Comparable<Shape> {
 		// You may want to implement this method
 		return 0;
 	}
-	
+
+
+
+	//Compare by height - an annonymous comparator class
+	public static Comparator<Shape> compareByHeight = new Comparator<Shape>() {
+		public int compare(Shape s1, Shape s2) {
+			return Integer.compare(s1.sHeight, s2.sHeight);
+		}
+	};
+
+	//Compare by width - an annonymous comparator class
+	public static Comparator<Shape> compareByWidth = new Comparator<Shape>() {
+		public int compare(Shape s1, Shape s2) {
+			return Integer.compare(s1.sWidth, s2.sWidth);
+		}
+	};
+
+
+
+
+
+
 	//HELPER FUNCTION: Rotate shape 90 degrees by swapping width and height 
 	public void rotateShape () {
 		int tempWidth = sWidth;

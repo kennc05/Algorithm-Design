@@ -75,10 +75,9 @@ public class PerformanceTest {
 			double avgTimeTaken = 0.0;
 			double avgSheetsUsed = 0.0;
 
-			generatedShapes = generateShapes.generateShapeList(noOfShapes); //The list of shapes that will be passed to the algorithm
-
 			//Test nextFit()
 			for (int j = 0; j < noOfRep; j++) { //Repeat a test several times
+				generatedShapes = generateShapes.generateShapeList(noOfShapes); //The list of shapes that will be passed to the algorithm
 				long startTime = System.currentTimeMillis();
 				usedSheets = algorithmsTest.nextFit(generatedShapes);
 				long elapsedTime = System.currentTimeMillis() - startTime;
@@ -89,7 +88,7 @@ public class PerformanceTest {
 			//Calculate the averages and add to results array
 			avgTimeTaken = avgTimeTaken / noOfRep;
 			resultsNextFitTime[i] = avgTimeTaken;
-			
+
 			avgSheetsUsed = avgSheetsUsed / noOfRep;
 			resultsNextFitSheets[i] = avgSheetsUsed;
 
@@ -99,6 +98,7 @@ public class PerformanceTest {
 
 			//Test firstFit()
 			for (int j = 0; j < noOfRep; j++) { //Repeat a test several times
+				generatedShapes = generateShapes.generateShapeList(noOfShapes); //The list of shapes that will be passed to the algorithm
 				long startTime = System.currentTimeMillis();
 				usedSheets = algorithmsTest.firstFit(generatedShapes);
 				long elapsedTime = System.currentTimeMillis() - startTime;
