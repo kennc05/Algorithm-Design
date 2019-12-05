@@ -53,6 +53,23 @@ public class Shape implements Comparable<Shape> {
 	}
 
 
+	//HELPER FUNCTION: Rotate shape 90 degrees by swapping width and height 
+	public void rotateShape () {
+		int tempWidth = sWidth;
+
+		sWidth = sHeight;
+		sHeight = tempWidth;
+
+	}
+
+	public int getArea () {
+		return getWidth() * getHeight();
+	}
+
+	//HELPER FUNCTION: Output information about a shape
+	public void outputShape () {
+		System.out.printf("%-5s - %-17s | %-17s \n","", "Height: "+sHeight, "Width: "+sWidth);
+	}
 
 	//Compare by height - an annonymous comparator class
 	public static Comparator<Shape> compareByHeight = new Comparator<Shape>() {
@@ -68,22 +85,10 @@ public class Shape implements Comparable<Shape> {
 		}
 	};
 
-
-
-
-
-
-	//HELPER FUNCTION: Rotate shape 90 degrees by swapping width and height 
-	public void rotateShape () {
-		int tempWidth = sWidth;
-
-		sWidth = sHeight;
-		sHeight = tempWidth;
-
-	}
-
-	//HELPER FUNCTION: Output information about a shape
-	public void outputShape () {
-		System.out.printf("%-5s - %-17s | %-17s \n","", "Height: "+sHeight, "Width: "+sWidth);
-	}
+	//Compare by area - an annonymous comparator class
+	public static Comparator<Shape> compareByArea = new Comparator<Shape>() {
+		public int compare(Shape s1, Shape s2) {
+			return Integer.compare(s1.getArea(), s2.getArea());
+		}
+	};
 }

@@ -48,10 +48,10 @@ public class PerformanceTest {
 		int noOfTests = 5; 
 
 		// arrays which will hold the time taken and sheets used for each algorithm
-		double[] resultsNextFitTime = new double[noOfTests];
+		long[] resultsNextFitTime = new long[noOfTests];
 		double[] resultsNextFitSheets = new double[noOfTests];
 
-		double[] resultsFirstFitTime = new double[noOfTests];
+		long[] resultsFirstFitTime = new long[noOfTests];
 		double[] resultsFirstFitSheets = new double[noOfTests];
 
 		// number of repetitions for each test - you need to CHANGE this value: Run each test 5 times
@@ -62,60 +62,50 @@ public class PerformanceTest {
 
 		// the increment in the number of shapes - you need to CHANGE this value: Increment by 10000 after each set
 		int increment = 10000;
+		
+		Generator generateShapes = new Generator();
+		Algorithms algorithmsTest = new Algorithms();
 
-		for(int i = 0; i < noOfTests; i++) { //Run a test up to the number of tests specified and each time noOfShapes will be increased by increment value
+		List<Sheet> usedSheets = new ArrayList<Sheet>();
+		List<Shape> generatedShapes = new ArrayList<Shape>();
 
-			Generator generateShapes = new Generator();
-			Algorithms algorithmsTest = new Algorithms();
+		for(int testNumber = 0; testNumber < noOfTests; testNumber++) { //Run a test up to the number of tests specified and each time noOfShapes will be increased by increment value
 
-			List<Sheet> usedSheets = new ArrayList<Sheet>();
-			List<Shape> generatedShapes = new ArrayList<Shape>();
+			//algorithmToTest: See below - this will loop to make sure each algorithm gets tested
+			for (int algorithmToTest = 0; algorithmToTest < 2; algorithmToTest++) {
 
-			//Variables which will hold the results after the tests complete on each algorithm
-			double avgTimeTaken = 0.0;
-			double avgSheetsUsed = 0.0;
+				for (int j = 0; j < noOfRep; j++) { //Repeat a test several times
+					generatedShapes = generateShapes.generateShapeList(noOfShapes); //The list of shapes that will be passed to the algorithm
 
-			//Test nextFit()
-			for (int j = 0; j < noOfRep; j++) { //Repeat a test several times
-				generatedShapes = generateShapes.generateShapeList(noOfShapes); //The list of shapes that will be passed to the algorithm
-				long startTime = System.currentTimeMillis();
-				usedSheets = algorithmsTest.nextFit(generatedShapes);
-				long elapsedTime = System.currentTimeMillis() - startTime;
-				avgTimeTaken += elapsedTime;
-				avgSheetsUsed += usedSheets.size();
+					//Select the algorithm to test
+					switch(algorithmToTest) {
+						case 0:
+							long startTime = System.currentTimeMillis();
+							usedSheets = algorithmsTest.nextFit(generatedShapes);
+							long elapsedTime = System.currentTimeMillis() - startTime;
+							resultsNextFitTime[testNumber] += elapsedTime; 
+							resultsNextFitSheets[testNumber] += usedSheets.size();
+							break;
+						
+						case 1:
+							startTime = System.currentTimeMillis();
+							usedSheets = algorithmsTest.firstFit(generatedShapes);
+							elapsedTime = System.currentTimeMillis() - startTime;
+							resultsFirstFitTime[testNumber] += elapsedTime;
+							resultsFirstFitSheets[testNumber] += usedSheets.size();
+							break;
+					}
+				}
 			}
 
-			//Calculate the averages and add to results array
-			avgTimeTaken = avgTimeTaken / noOfRep;
-			resultsNextFitTime[i] = avgTimeTaken;
+			//Calculate averages after repeated tests are done and both algorithms tested
+			resultsNextFitSheets[testNumber] = resultsFirstFitSheets[testNumber] / noOfRep;
+			resultsNextFitTime[testNumber] = resultsFirstFitTime[testNumber] / noOfRep;
 
-			avgSheetsUsed = avgSheetsUsed / noOfRep;
-			resultsNextFitSheets[i] = avgSheetsUsed;
-
-			//Reset values
-			avgTimeTaken = 0.0;
-			avgSheetsUsed = 0.0;
-
-			//Test firstFit()
-			for (int j = 0; j < noOfRep; j++) { //Repeat a test several times
-				generatedShapes = generateShapes.generateShapeList(noOfShapes); //The list of shapes that will be passed to the algorithm
-				long startTime = System.currentTimeMillis();
-				usedSheets = algorithmsTest.firstFit(generatedShapes);
-				long elapsedTime = System.currentTimeMillis() - startTime;
-				avgTimeTaken += elapsedTime;
-				avgSheetsUsed += usedSheets.size();
-			}
-
-			//Calculate the averages and add to results array
-			avgTimeTaken = avgTimeTaken / noOfRep;
-			resultsFirstFitTime[i] = avgTimeTaken;
-
-			avgSheetsUsed = avgSheetsUsed / noOfRep;
-			resultsFirstFitSheets[i] = avgSheetsUsed;
+			resultsFirstFitSheets[testNumber] = resultsFirstFitSheets[testNumber] / noOfRep;
+			resultsFirstFitTime[testNumber] = resultsFirstFitTime[testNumber] / noOfRep;
 
 			noOfShapes += increment; //Increment number of shapes to generate for next test
-
-
 		}
 
 
