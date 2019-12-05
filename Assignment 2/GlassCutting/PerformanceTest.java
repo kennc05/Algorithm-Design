@@ -114,7 +114,12 @@ public class PerformanceTest {
 			resultsFirstFitSheets[i] = avgSheetsUsed;
 
 			noOfShapes += increment; //Increment number of shapes to generate for next test
+
+
 		}
+
+
+
 
 		//Output the results in a tabulated format
 		noOfShapes = 10000;

@@ -60,7 +60,6 @@ public class SortedTest {
 
 
 
-
 		double[] resultsFirstFitUnsorted = new double[noOfTests];
 		double[] resultsFirstFitSortedHeightIncreasing = new double[noOfTests];
 		double[] resultsFirstFitSortedHeightDecreasing = new double[noOfTests];
@@ -73,10 +72,15 @@ public class SortedTest {
 		int noOfRep = 5;
 
 		// number of shapes needed for the first run - you need to CHANGE this value: Start with 10000 shapes
-		int noOfShapes = 10;
+		int noOfShapes = 20;
 
 		// the increment in the number of shapes - you need to CHANGE this value: Increment by 10000 after each set
 		int increment = 10;
+
+
+		double[][] resultsNextFit = new double[noOfTests][7];
+
+		double[][] resultsFirstFit = new double[noOfTests][7];
 
 
 /*
@@ -106,29 +110,74 @@ public class SortedTest {
 */
 
 
-
-
-		for(int i = 0; i < noOfTests; i++) { //Run a test up to the number of tests specified and each time noOfShapes will be increased by increment value
+		for(int testNumber = 0; testNumber < noOfTests; testNumber++) { //Run a test up to the number of tests specified and each time noOfShapes will be increased by increment value
 
 
 			//Variables which will hold the results after the tests complete on each algorithm
-			double avgSheetsUsed = 0.0;
+			//double avgSheetsUsed = 0.0;
 
 	
-			//TEST BY UNSORTED ARRAY OF SHAPES
+			//typeOfComparasion: 0: Unsorted shapes | 1: Sorted by decreasing height | 2: Sorted by increasing height | 3: Sorted by decreasing width | 4: Sorted by increasing width | 5: Sorted by decreasing area | 6: Sorted by increasing area
+			for (int typeOfComparasion = 0; typeOfComparasion < 7; typeOfComparasion++) {
+			//Test nextFit() and firstFit() - unsorted
 
-			//Test nextFit() - unsorted
-			for (int j = 0; j < noOfRep; j++) { //Repeat a test several times
-				generatedShapes = generateShapes.generateShapeList(noOfShapes); //The list of shapes that will be passed to the algorithm
-				usedSheets = algorithmsTest.nextFit(generatedShapes); //Number of sheats
-				avgSheetsUsed += usedSheets.size();
+				//algorithmToTest: 0: nextFit() | 1: firstFit()
+				for (int algorithmToTest = 0; algorithmToTest < 2; algorithmToTest++) {
+
+					for (int j = 0; j < noOfRep; j++) { //Repeat a test several times
+						generatedShapes = generateShapes.generateShapeList(noOfShapes); //The list of shapes that will be passed to the algorithm
+						
+						//Check if the shapes should be sorted
+						switch (typeOfComparasion) {
+							case 1:
+							Collections.sort(generatedShapes, Shape.compareByHeight);
+							break;
+	
+							case 2:
+							Collections.sort(generatedShapes, Shape.compareByHeight.reversed());
+							break;
+						}
+						
+
+						//Select which algorithm to test
+						switch (algorithmToTest) {
+							case 0:
+							usedSheets = algorithmsTest.nextFit(generatedShapes); //Number of sheats
+							resultsNextFit[testNumber][typeOfComparasion] = resultsNextFit[testNumber][typeOfComparasion] + usedSheets.size();
+
+							case 1:
+							usedSheets = algorithmsTest.firstFit(generatedShapes); //Number of sheats
+							resultsFirstFit[testNumber][typeOfComparasion] = resultsFirstFit[testNumber][typeOfComparasion] + usedSheets.size();
+						}
+
+					}
+				}
+
+				//Calculate the averages
+				resultsNextFit[testNumber][typeOfComparasion] = resultsNextFit[testNumber][typeOfComparasion] / noOfRep;
+				resultsFirstFit[testNumber][typeOfComparasion] = resultsFirstFit[testNumber][typeOfComparasion] / noOfRep;
 			}
-			avgSheetsUsed = avgSheetsUsed / noOfRep;
-			resultsNextFitUnsorted[i] = avgSheetsUsed;
+
+			//Increase no of shapes to generate
+			noOfShapes+= increment;
+		}
 
 
-			avgSheetsUsed = 0.0;
+		System.out.printf("\n%-30s | %-30s  %-30s  %-30s  %-30s  %-30s\n", "", "Average sheets used:", "", "", "", "");
+		System.out.printf("%-30s | %-15s | %-27s | %-27s | %-27s | %-27s\n", "Algorithm", "Unsorted", "Sorted by increasing height", "Sorted by decreasing height", "Sorted by increasing width", "Sorted by decreasing width");
 
+		noOfShapes = 10;
+		for (int testNumber = 0; testNumber < noOfTests; testNumber++) {
+			System.out.printf("%-30s | %-15s | %-27s | %-27s | %-27s | %-27s\n", "Shapes: "+noOfShapes+" - nextFit()", resultsNextFit[testNumber][0], resultsNextFit[testNumber][1], resultsNextFit[testNumber][2], "", "");
+			System.out.printf("%-30s | %-15s | %-27s | %-27s | %-27s | %-27s\n\n", "Shapes: "+noOfShapes+" - firstFit()", resultsFirstFit[testNumber][0], resultsFirstFit[testNumber][1], resultsFirstFit[testNumber][2], "", "");
+			noOfShapes += increment;
+		}
+	}
+}
+
+
+
+			/*
 
 			for (int j = 0; j < noOfRep; j++) { //Repeat a test several times
 				generatedShapes = generateShapes.generateShapeList(noOfShapes); //The list of shapes that will be passed to the algorithm
@@ -169,43 +218,19 @@ public class SortedTest {
 
 		}
 
+		*/
+
 		
 
 
 
-
-
-
-
-		//Sort the array
-		
-		System.out.printf("\n%-30s | %-30s  %-30s  %-30s  %-30s  %-30s\n", "", "Average sheets used:", "", "", "", "");
-		System.out.printf("%-30s | %-30s | %-30s | %-30s | %-30s | %-30s\n", "Algorithm", "Unsorted", "Sorted by increasing height", "Sorted by decreasing height", "Sorted by increasing width", "Sorted by decreasing width");
-
-
-		noOfShapes = 10;
-		for (int k = 0; k < noOfTests; k++) {
-			System.out.printf("%-30s | %-30s | %-30s | %-30s | %-30s | %-30s\n", "Shapes: "+noOfShapes+" - nextFit()", resultsNextFitUnsorted[k], resultsNextFitSortedHeightIncreasing[k], resultsNextFitSortedHeightDecreasing[k], "", "");
-			System.out.printf("%-30s | %-30s | %-30s | %-30s | %-30s | %-30s\n", "Shapes: "+noOfShapes+" - firstFit()", resultsFirstFitUnsorted[k], resultsFirstFitSortedHeightIncreasing[k], resultsFirstFitSortedHeightDecreasing[k], "", "");
-			noOfShapes += increment;
-		}
-
-	}
-
-
-
-	public void sortShapes (List<Shape> generatedShapes) {
-		Collections.sort(generatedShapes, Shape.compareByHeight);
-	}
 
 
 
 
 	
-	public List<Shape> reverseOrder(List<Shape> generatedShapes) {
-		Collections.reverse(generatedShapes);
-		return generatedShapes;
+	
 
-	}
+	
 
-}
+
