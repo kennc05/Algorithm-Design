@@ -44,23 +44,23 @@ public class PerformanceTest {
 		 * average time and sheets needed for each run
 		 **/
 
-		// total number of tests - you need to CHANGE this value: Run 5 tests for each no of shapes
+		// Run 5 tests for each number of shapes
 		int noOfTests = 5; 
 
-		// arrays which will hold the time taken and sheets used for each algorithm
+		// arrays which will hold the time taken and sheets used for each algorithm. Each index will hold the result for each test
 		long[] resultsNextFitTime = new long[noOfTests];
 		double[] resultsNextFitSheets = new double[noOfTests];
 
 		long[] resultsFirstFitTime = new long[noOfTests];
 		double[] resultsFirstFitSheets = new double[noOfTests];
 
-		// number of repetitions for each test - you need to CHANGE this value: Run each test 4 times
+		// Repeat each test 4 times
 		int noOfRep = 4;
 
-		// number of shapes needed for the first run - you need to CHANGE this value: Start with 10000 shapes
+		// Start with 10000 shapes
 		int noOfShapes = 10000;
 
-		// the increment in the number of shapes - you need to CHANGE this value: Increment by 10000 after each set
+		// After a test has been completed, increment number of shapes by 10000
 		int increment = 10000;
 		
 		Generator generateShapes = new Generator();
@@ -71,34 +71,24 @@ public class PerformanceTest {
 
 		for(int testNumber = 0; testNumber < noOfTests; testNumber++) { //Run a test up to the number of tests specified and each time noOfShapes will be increased by increment value
 
-			//algorithmToTest: See below - this will loop to make sure each algorithm gets tested
-			for (int algorithmToTest = 0; algorithmToTest < 2; algorithmToTest++) {
+			for (int j = 0; j < noOfRep; j++) { //Repeat a test several times with a different list of shapes 
+				generatedShapes = generateShapes.generateShapeList(noOfShapes); //Generate a new list of shapes after every replication
+					
+				//Run test with list of shapes on nextFit
+				long startTime = System.nanoTime();
+				usedSheets = algorithmsTest.nextFit(generatedShapes);
+				long elapsedTime = System.nanoTime() - startTime;
+				resultsNextFitTime[testNumber] += elapsedTime; 
+				resultsNextFitSheets[testNumber] += usedSheets.size();
 
-				for (int j = 0; j < noOfRep; j++) { //Repeat a test several times
-					generatedShapes = generateShapes.generateShapeList(noOfShapes); //The list of shapes that will be passed to the algorithm
-
-					//Select the algorithm to test
-					switch(algorithmToTest) {
-						case 0:
-							long startTime = System.currentTimeMillis();
-							usedSheets = algorithmsTest.nextFit(generatedShapes);
-							long elapsedTime = System.currentTimeMillis() - startTime;
-							resultsNextFitTime[testNumber] += elapsedTime; 
-							resultsNextFitSheets[testNumber] += usedSheets.size();
-							break;
-						
-						case 1:
-							startTime = System.currentTimeMillis();
-							usedSheets = algorithmsTest.firstFit(generatedShapes);
-							elapsedTime = System.currentTimeMillis() - startTime;
-							resultsFirstFitTime[testNumber] += elapsedTime;
-							resultsFirstFitSheets[testNumber] += usedSheets.size();
-							break;
-					}
-				}
+				//Run test with same list of shapes on firstFit
+				startTime = System.nanoTime();
+				usedSheets = algorithmsTest.firstFit(generatedShapes);
+				elapsedTime = System.nanoTime() - startTime;
+				resultsFirstFitTime[testNumber] += elapsedTime;
+				resultsFirstFitSheets[testNumber] += usedSheets.size();
 			}
-
-			//Calculate averages after repeated tests are done and both algorithms tested
+			//Calculate averages after repeated tests with same number of shapes to generate are done and both algorithms tested
 			resultsNextFitSheets[testNumber] = resultsNextFitSheets[testNumber] / noOfRep;
 			resultsNextFitTime[testNumber] = resultsNextFitTime[testNumber] / noOfRep;
 
@@ -106,6 +96,7 @@ public class PerformanceTest {
 			resultsFirstFitTime[testNumber] = resultsFirstFitTime[testNumber] / noOfRep;
 
 			noOfShapes += increment; //Increment number of shapes to generate for next test
+		
 		}
 
 
@@ -117,7 +108,8 @@ public class PerformanceTest {
 		System.out.printf("%-30s | %-20s | %-20s | %-20s | %-20s |\n", "Test number & Shapes", "Avg time taken (ms)", "Avg sheets used", "Avg time taken (ms)", "Avg sheets used");
 
 		for (int i = 0; i < noOfTests; i++) {
-			System.out.printf("%-30s | %-20s | %-20s | %-20s | %-20s |\n", "Test "+(i + 1)+" - Shapes(n): "+noOfShapes, resultsNextFitTime[i], resultsNextFitSheets[i], resultsFirstFitTime[i], resultsFirstFitSheets[i]);
+			//Convert each time taken to milliseconds
+			System.out.printf("%-30s | %-20s | %-20s | %-20s | %-20s |\n", "Test "+(i + 1)+" - Shapes(n): "+noOfShapes, resultsNextFitTime[i]/1000000, resultsNextFitSheets[i], resultsFirstFitTime[i]/1000000, resultsFirstFitSheets[i]);
 			noOfShapes += increment;
 		}
 	}

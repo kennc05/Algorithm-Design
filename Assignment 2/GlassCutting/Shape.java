@@ -71,6 +71,8 @@ public class Shape implements Comparable<Shape> {
 		System.out.printf("%-5s - %-17s | %-17s \n","", "Height: "+sHeight, "Width: "+sWidth);
 	}
 
+	//Added annonymous classes to help with comparasions:
+	
 	//Compare by height - an annonymous comparator class
 	public static Comparator<Shape> compareByHeight = new Comparator<Shape>() {
 		public int compare(Shape s1, Shape s2) {

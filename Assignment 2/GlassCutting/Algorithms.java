@@ -5,7 +5,7 @@
  * 
  * @author  RYK
  * @since   30/10/2019
- * extended by @author 
+ * extended by Kenneth 17045066 
  *
  **/
 
@@ -44,10 +44,6 @@ public class Algorithms {
 		// They will get redefined when a new one is needed
 		Sheet currentSheet = new Sheet();
 		Shelf currentShelf = new Shelf();
-
-		/*Place the first shape in the first shelf
-		currentShelf.place(shapes.get(0));
-		shapes.remove(0);*/
 
 		for (Shape currentShape : shapes) // for every shape in the shapes list
 		{

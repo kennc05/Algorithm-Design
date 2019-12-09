@@ -4,7 +4,7 @@
  *           need
  * 
  * @author RYK
- * @since 30/10/2019 extended by @kenneth
+ * @since 30/10/2019 extended by Kenneth 17045066
  */
 
 
@@ -27,17 +27,6 @@ public class CorrectnessTest {
 		 * Think about normal cases and border cases. 
 		 * You can use any additional method you created in this class
 		 */
-
-		 /*
-		List<Shape> errorTest = new ArrayList<Shape>(); 
-		errorTest.add(new Shape(224, 74));
-		errorTest.add(new Shape(247, 216));
-		errorTest.add(new Shape(67, 121));
-		errorTest.add(new Shape(9, 182));
-		errorTest.add(new Shape(178, 169));
-		errorTest.add(new Shape(55, 250));
-		*/
-
 
 		//Logic tests that can be run - see Assignment 2 report
 		List<Shape> logicTest1 = new ArrayList<Shape>(); 

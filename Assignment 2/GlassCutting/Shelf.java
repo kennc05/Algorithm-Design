@@ -4,7 +4,7 @@
  * 
  * @author  RYK 
  * @since   30/10/2019
- * extended by @author 
+ * extended by Kenneth 17045066
  */
 
 import java.util.ArrayList;
@@ -80,7 +80,6 @@ public class Shelf {
 	//It also checks if the shape limit has been reached first. 
 	//If the limit hasn't been reached then: Add shape (1) By its original orientation (2) If it fails, by its rotated orientation
 	public boolean attemptAddShapeToShelf (Shape currentShape, Sheet currentSheet) {
-
 		if(getShapes().size() == 0) { //If a shelf is empty
 			place(currentShape);
 			return true;
@@ -106,8 +105,6 @@ public class Shelf {
 		usedWidth += shapes.get(0).getWidth();
 
 	}
-
-	
 
 	//HELPER FUNCTION: To output information about a shelf
 	public void outputShelf () {
