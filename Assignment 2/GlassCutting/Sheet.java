@@ -73,36 +73,35 @@ public class Sheet {
 		return SHEET_WIDTH;
 	}
 
-	//HELPER FUNCTION ADDED - validate if a shelf can fit in sheet by height
+	//HELPER FUNCTION: Validate if a shelf can fit in sheet by height
 	public boolean checkAddShelfToSheet (Shelf shelf) {
-		//System.out.println("Shelf height is "+shelf.getHeight());
-		//System.out.println("Checking remaining height allowed before adding shelf: "+(getHeight() - allShelvesHeight()));
-
 		if (shelf.getHeight() <= (getHeight() - allShelvesHeight())) {
 			return true;
 		}
-
-		//System.out.println("Shelf can't fit - either too big or limit reached");
 		return false;
 	}
 
 	//HELPER FUNCTION: Attempts to add a shelf to sheet
-	//This tries to see if a shelf with one shape can fit in a sheet. If it fails, then it will try rotating it
+	//This tries to see if a shelf with one shape can fit in a sheet. It also makes sure that the shape limit hasn't been reached. If it fails, then it will try rotating it
 	public boolean attemptAddShelfToSheet (Shelf shelf) {
+		if (checkShapeLimit() == 0) { //if max shapes have been added
+			return false;
+		}
+
 		if(!checkAddShelfToSheet(shelf)) { //if it still doesn't fit
-			shelf.rotateShelf(); //Go back to original orientation
+			shelf.rotateShelf(); //Try to rotate shelf
 			if(!checkAddShelfToSheet(shelf)) { //if it still doesn't fit
 				shelf.rotateShelf(); //Go back to original orientation
 				return false;
 			}
 		}
-		//Rotating shape in shelf does help and it gets added in
+		//Rotating shape in shelf does help
 		return true; 
 	}
 
-	//HELPER FUNCTION: Check how many more shapes can be added
+	//HELPER FUNCTION: Returns how many more shape can be added to a sheet
 	public int checkShapeLimit () {
-		int allowedShapes = SHAPE_LIMIT; //How many more shapes can be added to a sheet
+		int allowedShapes = SHAPE_LIMIT; 
 		for (Shelf currentShelf : this.shelves) {
 			allowedShapes -= currentShelf.getShapes().size();
 		}
@@ -119,7 +118,5 @@ public class Sheet {
 			currentShelf.outputShelf();
 			shelfCount++;
 		}
-
-		
 	}
 }

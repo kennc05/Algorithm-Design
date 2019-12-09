@@ -46,15 +46,14 @@ public class SortedTest {
 		// total number of tests - you need to CHANGE this value: Run 5 tests for each no of shapes
 		int noOfTests = 5; 
 
-
 		// number of repetitions for each test - you need to CHANGE this value: Run each test 5 times
 		int noOfRep = 5;
 
 		// number of shapes needed for the first run - you need to CHANGE this value: Start with 10000 shapes
-		int noOfShapes = 100;
+		int noOfShapes = 10000;
 
 		// the increment in the number of shapes - you need to CHANGE this value: Increment by 10000 after each set
-		int increment = 100;
+		int increment = 10000;
 
 
 		//2D arrays which will hold the results from the tests 
@@ -69,7 +68,7 @@ public class SortedTest {
 			for (int typeOfComparasion = 0; typeOfComparasion < 7; typeOfComparasion++) {
 			//Test nextFit() and firstFit() - unsorted
 
-				//algorithmToTest: See blow
+				//algorithmToTest: See below
 				for (int algorithmToTest = 0; algorithmToTest < 2; algorithmToTest++) {
 
 					//Repeat the same test several times
@@ -109,12 +108,14 @@ public class SortedTest {
 						//Select which algorithm to test
 						switch (algorithmToTest) {
 							case 0: //nextFit()
-							usedSheets = algorithmsTest.nextFit(generatedShapes); //Number of sheats
-							resultsNextFit[testNumber][typeOfComparasion] = resultsNextFit[testNumber][typeOfComparasion] + usedSheets.size();
+							usedSheets = algorithmsTest.nextFit(generatedShapes); //Number of sheets
+							resultsNextFit[testNumber][typeOfComparasion] += usedSheets.size();
+							break;
 
 							case 1: //firstFit()
-							usedSheets = algorithmsTest.firstFit(generatedShapes); //Number of sheats
-							resultsFirstFit[testNumber][typeOfComparasion] = resultsFirstFit[testNumber][typeOfComparasion] + usedSheets.size();
+							usedSheets = algorithmsTest.firstFit(generatedShapes); //Number of sheets
+							resultsFirstFit[testNumber][typeOfComparasion] += usedSheets.size();
+							break;
 						}
 
 					}
@@ -133,7 +134,7 @@ public class SortedTest {
 		System.out.printf("\n%-30s | %-30s  %-30s  %-30s  %-30s  %-30s\n", "", "Sorted by (avg sheets used):", "", "", "", "");
 		System.out.printf("%-30s | %-10s | %-17s | %-17s | %-17s | %-17s | %-17s | %-17s\n", "Algorithm", "Unsorted", "Increasing height", "Decreasing height", "Increasing width", "Decreasing width", "Increasing area", "Decreasing area");
 
-		noOfShapes = 100;
+		noOfShapes = 10000;
 		for (int testNumber = 0; testNumber < noOfTests; testNumber++) {
 			System.out.printf("%-30s | %-10s | %-17s | %-17s | %-17s | %-17s | %-17s | %-17s\n", "Shapes: "+noOfShapes+" - nextFit()", resultsNextFit[testNumber][0], resultsNextFit[testNumber][1], resultsNextFit[testNumber][2], resultsNextFit[testNumber][3], resultsNextFit[testNumber][4], resultsNextFit[testNumber][5], resultsNextFit[testNumber][6]);
 			System.out.printf("%-30s | %-10s | %-17s | %-17s | %-17s | %-17s | %-17s | %-17s\n\n", "Shapes: "+noOfShapes+" - firstFit()", resultsFirstFit[testNumber][0], resultsFirstFit[testNumber][1], resultsFirstFit[testNumber][2], resultsFirstFit[testNumber][3], resultsFirstFit[testNumber][4], resultsFirstFit[testNumber][5], resultsFirstFit[testNumber][6]);

@@ -80,19 +80,14 @@ public class Shelf {
 	//It also checks if the shape limit has been reached first. 
 	//If the limit hasn't been reached then: Add shape (1) By its original orientation (2) If it fails, by its rotated orientation
 	public boolean attemptAddShapeToShelf (Shape currentShape, Sheet currentSheet) {
-		if(getShapes().size() == 0) {
+
+		if(getShapes().size() == 0) { //If a shelf is empty
 			place(currentShape);
 			return true;
 		}
 
-		if(getShapes().size() + 1 > currentSheet.checkShapeLimit()) {
-			//System.out.println("Shape limit reached! Adding in shape will mean sheet has " +(getShapes().size() + 1)+" shapes");
-			return false;
-		}
-
 		if(!checkAddShapeToShelf(currentShape, currentSheet)) {
 			//If it wasn't added in successfully then rotate shape and try again
-			
 			currentShape.rotateShape();
 			if (!checkAddShapeToShelf(currentShape, currentSheet)) {
 				//If it still failed, then rotate shape back to original orientation and return false
@@ -104,10 +99,15 @@ public class Shelf {
 	}
 
 	//HELPER FUNCTION: When there is only one shape in a shelf, and it doesn't fit a sheet in its original orientation, this will be used
-	//to rotate the shape 
+	//to rotate the shape and update the used width of the shelf
 	public void rotateShelf () {
+		usedWidth -= shapes.get(0).getWidth();
 		shapes.get(0).rotateShape();
+		usedWidth += shapes.get(0).getWidth();
+
 	}
+
+	
 
 	//HELPER FUNCTION: To output information about a shelf
 	public void outputShelf () {

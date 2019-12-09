@@ -113,9 +113,6 @@ public class Generator {
 		shapes.add(new Shape(68, 76));
 		shapes.add(new Shape(150, 6));
 		shapes.add(new Shape(262, 17));
-
-
-		
 		
 		*/
 

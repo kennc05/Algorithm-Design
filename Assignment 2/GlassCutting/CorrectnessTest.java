@@ -4,7 +4,7 @@
  *           need
  * 
  * @author RYK
- * @since 30/10/2019 extended by @author
+ * @since 30/10/2019 extended by @kenneth
  */
 
 
@@ -21,8 +21,6 @@ public class CorrectnessTest {
 		List<Sheet> usedSheets = new ArrayList<Sheet>();
 
 		Algorithms algorithmsTest = new Algorithms();
-		Generator generatedValues = new Generator();
-
 		/*
 		 * Here you will need to validate that your algorithms (nextFit() and
 		 * firstFit()) behave as expected on small data sets. 
@@ -30,8 +28,59 @@ public class CorrectnessTest {
 		 * You can use any additional method you created in this class
 		 */
 
+		 /*
+		List<Shape> errorTest = new ArrayList<Shape>(); 
+		errorTest.add(new Shape(224, 74));
+		errorTest.add(new Shape(247, 216));
+		errorTest.add(new Shape(67, 121));
+		errorTest.add(new Shape(9, 182));
+		errorTest.add(new Shape(178, 169));
+		errorTest.add(new Shape(55, 250));
+		*/
+
+
+		//Logic tests that can be run - see Assignment 2 report
+		List<Shape> logicTest1 = new ArrayList<Shape>(); 
+		logicTest1.add(new Shape(101, 134));
+		logicTest1.add(new Shape(51, 98));
+		logicTest1.add(new Shape(152, 100));
+		logicTest1.add(new Shape(68, 76));
+	
+
+		List<Shape> logicTest2 = logicTest1;
+		logicTest2.add(new Shape(110, 82));
+		logicTest2.add(new Shape(100, 50));
+
+
+		List<Shape> logicTest3 = new ArrayList<Shape>(); 
+		logicTest3.add(new Shape(100, 50));
+		logicTest3.add(new Shape(70, 60));
+		logicTest3.add(new Shape(250, 225));
+		logicTest3.add(new Shape(200, 130));
+
+
+		 //List of rule tests that can be run - see Assignment 2 report
+		List<Shape> ruleTest1 = new ArrayList<Shape>(); 
+		ruleTest1.add(new Shape(101, 134));
+		ruleTest1.add(new Shape(51, 98));
+		ruleTest1.add(new Shape(50, 146));
+		ruleTest1.add(new Shape(105, 200));
+		ruleTest1.add(new Shape(291, 246));
+		ruleTest1.add(new Shape(68, 76));
+		ruleTest1.add(new Shape(150, 6));
+		ruleTest1.add(new Shape(262, 17));
+
+		List<Shape> ruleTest2 = new ArrayList<Shape>(); 
+		for (int i = 0; i < 25; i++) {
+			ruleTest2.add(new Shape(50,50));
+		}
+
+		//Depending on the test put in this variable, it will be passed onto both nextFit and firstFit
+		List<Shape> testToRun = ruleTest2;
+
+
 		System.out.println("\n*********** nextFit() testing ************* \n");
-		usedSheets = algorithmsTest.nextFit(generatedValues.generateShapeList(10));
+		usedSheets = algorithmsTest.nextFit(testToRun);
 		System.out.println("Used number of sheets for next fit: "+usedSheets.size());
 
 		int sheetCount = 1;
@@ -43,9 +92,11 @@ public class CorrectnessTest {
 			sheetCount++;
 		}
 		
-
+		usedSheets =  new ArrayList<Sheet>();
+		
+		sheetCount = 1;
 		System.out.println("\n*********** firstFit() testing ************* \n");
-		usedSheets = algorithmsTest.firstFit(generatedValues.generateShapeList(10));
+		usedSheets = algorithmsTest.firstFit(testToRun);
 		System.out.println("Used number of sheets for first fit: "+usedSheets.size());
 		
 		sheetCount = 1; //Reset sheet count

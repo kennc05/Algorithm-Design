@@ -54,8 +54,8 @@ public class PerformanceTest {
 		long[] resultsFirstFitTime = new long[noOfTests];
 		double[] resultsFirstFitSheets = new double[noOfTests];
 
-		// number of repetitions for each test - you need to CHANGE this value: Run each test 5 times
-		int noOfRep = 5;
+		// number of repetitions for each test - you need to CHANGE this value: Run each test 4 times
+		int noOfRep = 4;
 
 		// number of shapes needed for the first run - you need to CHANGE this value: Start with 10000 shapes
 		int noOfShapes = 10000;
@@ -99,8 +99,8 @@ public class PerformanceTest {
 			}
 
 			//Calculate averages after repeated tests are done and both algorithms tested
-			resultsNextFitSheets[testNumber] = resultsFirstFitSheets[testNumber] / noOfRep;
-			resultsNextFitTime[testNumber] = resultsFirstFitTime[testNumber] / noOfRep;
+			resultsNextFitSheets[testNumber] = resultsNextFitSheets[testNumber] / noOfRep;
+			resultsNextFitTime[testNumber] = resultsNextFitTime[testNumber] / noOfRep;
 
 			resultsFirstFitSheets[testNumber] = resultsFirstFitSheets[testNumber] / noOfRep;
 			resultsFirstFitTime[testNumber] = resultsFirstFitTime[testNumber] / noOfRep;
