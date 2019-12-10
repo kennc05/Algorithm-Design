@@ -32,8 +32,8 @@ public class Generator {
 
 		for (int i = 0; i < numberOfShapes; i++) //Create a set number of shapes to generate
 		 {
-			int height = randomtInt.nextInt(MAX_SIZE_HEIGHT) + 1; //Start from 1 to (MAX_SIZE_HEIGHT-1)
-			int width = randomtInt.nextInt(MAX_SIZE_WIDTH) + 1; //Start from 1 - (MAX_SIZE_WIDTH-1)
+			int height = randomtInt.nextInt(MAX_SIZE_HEIGHT) + 1; //Start from 1 to (MAX_SIZE_HEIGHT)
+			int width = randomtInt.nextInt(MAX_SIZE_WIDTH) + 1; //Start from 1 - (MAX_SIZE_WIDTH)
 			shapes.add(new Shape(width, height)); //Add to the shape list
 		 } 
 		return shapes;

@@ -63,71 +63,62 @@ public class SortedTest {
 		//Run a test up to the number of tests specified and each time noOfShapes will be increased by increment value. On each test, nofOfShapes to generate will be different
 		for(int testNumber = 0; testNumber < noOfTests; testNumber++) { 
 
-			//Repeat the same test several times
-			for (int j = 0; j < noOfRep; j++) { 
-				//Generate a new list of shapes each repetition
-				generatedShapes = generateShapes.generateShapeList(noOfShapes);
+			//typeOfComparasion: See below 
+			for (int typeOfComparasion = 0; typeOfComparasion < 7; typeOfComparasion++) {
+
+				//Repeat the same test several times
+				for (int j = 0; j < noOfRep; j++) { 
+					generatedShapes = generateShapes.generateShapeList(noOfShapes); //The list of shapes that will be passed to the algorithm - newly generated
 					
 					//Check if the shapes should be sorted, and if so select the type of sort
+					switch (typeOfComparasion) {
+						//case 0: Unsorted shapes - runs on first test
 
-					//Unsorted shapes
-					usedSheets = algorithmsTest.nextFit(generatedShapes); //Number of sheets
-					resultsNextFit[testNumber][0] += usedSheets.size();
-					usedSheets = algorithmsTest.firstFit(generatedShapes); //Number of sheets
-					resultsFirstFit[testNumber][0] += usedSheets.size();
-
-					//Sort by increasing height
-					Collections.sort(generatedShapes, Shape.compareByHeight);
-					usedSheets = algorithmsTest.nextFit(generatedShapes); //Number of sheets
-					resultsNextFit[testNumber][1] += usedSheets.size();
-					usedSheets = algorithmsTest.firstFit(generatedShapes); //Number of sheets
-					resultsFirstFit[testNumber][1] += usedSheets.size();
+						case 1: // 1: Sorted by decreasing height
+							Collections.sort(generatedShapes, Shape.compareByHeight);
+							break;
 	
-					//Sort by decreasing height
-					Collections.sort(generatedShapes, Shape.compareByHeight.reversed());
-					usedSheets = algorithmsTest.nextFit(generatedShapes); //Number of sheets
-					resultsNextFit[testNumber][2] += usedSheets.size();
-					usedSheets = algorithmsTest.firstFit(generatedShapes); //Number of sheets
-					resultsFirstFit[testNumber][2] += usedSheets.size();
+						case 2: // 2: Sorted by increasing height
+							Collections.sort(generatedShapes, Shape.compareByHeight.reversed());
+							break;
 
-					//Sort by increasing width
-					Collections.sort(generatedShapes, Shape.compareByWidth);
-					usedSheets = algorithmsTest.nextFit(generatedShapes); //Number of sheets
-					resultsNextFit[testNumber][3] += usedSheets.size();
-					usedSheets = algorithmsTest.firstFit(generatedShapes); //Number of sheets
-					resultsFirstFit[testNumber][3] += usedSheets.size();
+						case 3: // 3: Sorted by decreasing width
+							Collections.sort(generatedShapes, Shape.compareByWidth);
+							break;
+	
+						case 4: // 4: Sorted by increasing width
+							Collections.sort(generatedShapes, Shape.compareByWidth.reversed());
+							break;
 
-					//Sort by decreasing width				
-					Collections.sort(generatedShapes, Shape.compareByWidth.reversed());
-					usedSheets = algorithmsTest.nextFit(generatedShapes); //Number of sheets
-					resultsNextFit[testNumber][4] += usedSheets.size();
-					usedSheets = algorithmsTest.firstFit(generatedShapes); //Number of sheets
-					resultsFirstFit[testNumber][4] += usedSheets.size();
+						case 5: // 1: Sorted by decreasing area
+							Collections.sort(generatedShapes, Shape.compareByArea);
+							break;
+	
+						case 6: // 2: Sorted by increasing area
+							Collections.sort(generatedShapes, Shape.compareByArea.reversed());
+							break;
+					}
 
-					//Sort by increasing area					
-					Collections.sort(generatedShapes, Shape.compareByArea);
-					usedSheets = algorithmsTest.nextFit(generatedShapes); //Number of sheets
-					resultsNextFit[testNumber][5] += usedSheets.size();
-					usedSheets = algorithmsTest.firstFit(generatedShapes); //Number of sheets
-					resultsFirstFit[testNumber][5] += usedSheets.size();
+					//Test the generated shape list (depending on the case above)
+					//And pass the same list to both algorithms (whether sorted or not) 
 
-					//Sort by decreasing area
-					Collections.sort(generatedShapes, Shape.compareByArea.reversed());
 					usedSheets = algorithmsTest.nextFit(generatedShapes); //Number of sheets
-					resultsNextFit[testNumber][6] += usedSheets.size();
+					resultsNextFit[testNumber][typeOfComparasion] += usedSheets.size();
+						
+					//The list will remain unchanged as in both nextFit() and firstFit() I make a copy of the shape before rotating the shape to fit it in
 					usedSheets = algorithmsTest.firstFit(generatedShapes); //Number of sheets
-					resultsFirstFit[testNumber][6] += usedSheets.size();
+					resultsFirstFit[testNumber][typeOfComparasion] += usedSheets.size();
+				}
 
-			}
-			//Calculate the averages after doing tests on both algorithms by divinding each comparason by number of repeated tests
-			for (int typeOfComparasion = 0; typeOfComparasion < 7; typeOfComparasion++) {
+				//Calculate the averages after doing tests on both algorithms
 				resultsNextFit[testNumber][typeOfComparasion] = resultsNextFit[testNumber][typeOfComparasion] / noOfRep;
 				resultsFirstFit[testNumber][typeOfComparasion] = resultsFirstFit[testNumber][typeOfComparasion] / noOfRep;
 			}
 			//Increase no of shapes to generate
 			noOfShapes+= increment;
 		}
-	
+
+
 		System.out.printf("\n%-30s | %-30s  %-30s  %-30s  %-30s  %-30s\n", "", "Sorted by (avg sheets used):", "", "", "", "");
 		System.out.printf("%-30s | %-10s | %-17s | %-17s | %-17s | %-17s | %-17s | %-17s\n", "Algorithm", "Unsorted", "Increasing height", "Decreasing height", "Increasing width", "Decreasing width", "Increasing area", "Decreasing area");
 

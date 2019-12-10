@@ -68,29 +68,28 @@ public class Shelf {
 	}
 
 	//HELPER FUNCTION: Validate that a shape can be added in checking against its height and width
-	public boolean checkAddShapeToShelf(Shape currentShape, Sheet currentSheet) {
-		if (currentShape.getHeight() <= getHeight() && currentShape.getWidth() <= (currentSheet.getWidth() - getWidth())) {
-			place(currentShape); //place the shape on the shelf
+	public boolean checkAddShapeToShelf(Shape shape, Sheet sheet) {
+		if (shape.getHeight() <= getHeight() && shape.getWidth() <= (sheet.getWidth() - getWidth())) {
+			place(shape); //place the shape on the shelf
 			return true;
 		}
 		return false;
 	}
 
 	//HELPER FUNCTION: Attempts to add a shape to shelf, if it is the first shape on shelf, then add it.
-	//It also checks if the shape limit has been reached first. 
 	//If the limit hasn't been reached then: Add shape (1) By its original orientation (2) If it fails, by its rotated orientation
-	public boolean attemptAddShapeToShelf (Shape currentShape, Sheet currentSheet) {
+	public boolean attemptAddShapeToShelf (Shape shape, Sheet sheet) {
 		if(getShapes().size() == 0) { //If a shelf is empty
-			place(currentShape);
+			place(shape);
 			return true;
 		}
 
-		if(!checkAddShapeToShelf(currentShape, currentSheet)) {
+		if(!checkAddShapeToShelf(shape, sheet)) {
 			//If it wasn't added in successfully then rotate shape and try again
-			currentShape.rotateShape();
-			if (!checkAddShapeToShelf(currentShape, currentSheet)) {
+			shape.rotateShape();
+			if (!checkAddShapeToShelf(shape, sheet)) {
 				//If it still failed, then rotate shape back to original orientation and return false
-				currentShape.rotateShape();
+				shape.rotateShape();
 				return false;
 			}
 		}
@@ -103,12 +102,10 @@ public class Shelf {
 		usedWidth -= shapes.get(0).getWidth();
 		shapes.get(0).rotateShape();
 		usedWidth += shapes.get(0).getWidth();
-
 	}
 
 	//HELPER FUNCTION: To output information about a shelf
 	public void outputShelf () {
-		
 		System.out.printf("%-5s - %-17s | %-17s | %-17s |\n", "", "Height used: "+getHeight(), "Width: "+usedWidth, "Shapes: "+getShapes().size());
 		int shapeCount = 1;
 		for (Shape currentShape : shapes) {

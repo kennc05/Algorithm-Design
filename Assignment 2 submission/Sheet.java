@@ -82,20 +82,19 @@ public class Sheet {
 	}
 
 	//HELPER FUNCTION: Attempts to add a shelf to sheet
-	//This tries to see if a shelf with one shape can fit in a sheet. It also makes sure that the shape limit hasn't been reached. If it fails, then it will try rotating it
+	//This tries to see if a shelf with one shape can fit in a sheet. It also makes sure that the shape limit hasn't been reached. If it fails, then it will try rotating the shape in the shelf
 	public boolean attemptAddShelfToSheet (Shelf shelf) {
 		if (checkShapeLimit() == 0) { //if max shapes have been added
 			return false;
 		}
-
 		if(!checkAddShelfToSheet(shelf)) { //if it still doesn't fit
 			shelf.rotateShelf(); //Try to rotate shelf
 			if(!checkAddShelfToSheet(shelf)) { //if it still doesn't fit
 				shelf.rotateShelf(); //Go back to original orientation
 				return false;
 			}
+			//Rotating 1st shape in shelf does help 
 		}
-		//Rotating shape in shelf does help
 		return true; 
 	}
 

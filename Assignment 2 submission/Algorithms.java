@@ -47,14 +47,15 @@ public class Algorithms {
 
 		for (Shape currentShape : shapes) // for every shape in the shapes list
 		{
+			Shape copyOfShape = new Shape(currentShape.getWidth(), currentShape.getHeight());  //So that original shape in shapes list does not get changed or potentially rotated after it has been added in by the algorithm
 			// Try to add current shape to current shelf - checking that the shape limit hasn't been reached
 			// In this implementation, a shelf isn't added to a sheet until it is considered "full", which is why I do currentSheet.checkShapeLimit() - currentShelf.getShapes.size() - 1
-			if (currentSheet.checkShapeLimit() - currentShelf.getShapes().size() - 1 == -1 || !currentShelf.attemptAddShapeToShelf(currentShape, currentSheet)) {
+			if (currentSheet.checkShapeLimit() - currentShelf.getShapes().size() - 1 == -1 || !currentShelf.attemptAddShapeToShelf(copyOfShape, currentSheet)) {
 				// Where the current shape can't be added to the shelf, the shelf is now "full" 
 				// Add the current shelf to the current sheet, then make a new shelf and add the shape to it
 				currentSheet.addShelf(currentShelf); // add the current shelf to the sheet
 				currentShelf = new Shelf(); // Make a new shelf
-				currentShelf.place(currentShape); // Place the current shape in the shelf
+				currentShelf.place(copyOfShape); // Place the current shape in the shelf
 			}
 
 			// Add this point the shape has been added to a shelf - the current shelf or a new one
@@ -111,6 +112,7 @@ public class Algorithms {
 
 		for (Shape currentShape : shapes) // For every shape in the shapes list
 		{
+			Shape copyOfShape = new Shape(currentShape.getWidth(), currentShape.getHeight());  //So that original shape in shapes list does not get changed or potentially rotated after it has been added in by the algorithm
 			Boolean shapeAdded = false; // This will indicate if a shape was added to a shelf / sheet
 			
 			for (int i = 0; i < usedSheets.size() && !shapeAdded; i++) {
@@ -119,10 +121,9 @@ public class Algorithms {
 					
 					// Go through every shelf within that sheet to add a shape
 					for (int j = 0; j < currentSheet.getShelves().size() && !shapeAdded; j++) {
-						currentShelf = currentSheet.getShelves().get(j);
-						// Try to add current shape to current shelf
-						if (currentShelf.attemptAddShapeToShelf(currentShape, currentSheet)) {
-							shapeAdded = true; //Stop iterating through shelves and sheets
+						currentShelf = currentSheet.getShelves().get(j); // Get the next current shelf
+						if (currentShelf.attemptAddShapeToShelf(copyOfShape, currentSheet)) {
+							shapeAdded = true; //Stop iterating through shelves and sheets as shape has been added to a shelf
 						}
 					}
 				}
@@ -135,11 +136,11 @@ public class Algorithms {
 			// At this point the current shape hasn't been added still
 			// Make a new shelf with the current shape inside and go through each sheet to try fit new shelf
 			currentShelf = new Shelf();
-			currentShelf.place(currentShape);
+			currentShelf.place(copyOfShape);
 
 			for (int i = 0; i < usedSheets.size() && !shapeAdded; i++) {
 				currentSheet = usedSheets.get(i); // Get the current sheet
-				if (currentSheet.attemptAddShelfToSheet(currentShelf)) { // Shelf can be added to sheet
+				if (currentSheet.attemptAddShelfToSheet(currentShelf)) { // Shelf can be added to sheet by checking it can fit
 					currentSheet.addShelf(currentShelf); // Add the shelf to the sheet - whether rotated or not
 					shapeAdded = true; //stop iterating through sheets
 				}
@@ -149,7 +150,7 @@ public class Algorithms {
 				continue; // go to next shape in list
 			}
 
-			//At this point there is not fit for the new shelf with shape, make a new sheet and place shelf inside it 
+			//At this point there is not fi for the new shelf with shape, make a new sheet and place shelf inside it 
 			//On the first run, the algorithm will get to this point to initialise the shelves and sheets available to check 
 			currentSheet = new Sheet();
 			currentSheet.addShelf(currentShelf);
