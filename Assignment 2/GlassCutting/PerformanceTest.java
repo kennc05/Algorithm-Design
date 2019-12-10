@@ -88,6 +88,7 @@ public class PerformanceTest {
 				resultsFirstFitTime[testNumber] += elapsedTime;
 				resultsFirstFitSheets[testNumber] += usedSheets.size();
 			}
+			
 			//Calculate averages after repeated tests with same number of shapes to generate are done and both algorithms tested
 			resultsNextFitSheets[testNumber] = resultsNextFitSheets[testNumber] / noOfRep;
 			resultsNextFitTime[testNumber] = resultsNextFitTime[testNumber] / noOfRep;

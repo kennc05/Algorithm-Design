@@ -106,7 +106,6 @@ public class Shelf {
 
 	//HELPER FUNCTION: To output information about a shelf
 	public void outputShelf () {
-		
 		System.out.printf("%-5s - %-17s | %-17s | %-17s |\n", "", "Height used: "+getHeight(), "Width: "+usedWidth, "Shapes: "+getShapes().size());
 		int shapeCount = 1;
 		for (Shape currentShape : shapes) {

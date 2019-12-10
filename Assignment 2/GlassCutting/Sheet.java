@@ -87,7 +87,6 @@ public class Sheet {
 		if (checkShapeLimit() == 0) { //if max shapes have been added
 			return false;
 		}
-
 		if(!checkAddShelfToSheet(shelf)) { //if it still doesn't fit
 			shelf.rotateShelf(); //Try to rotate shelf
 			if(!checkAddShelfToSheet(shelf)) { //if it still doesn't fit

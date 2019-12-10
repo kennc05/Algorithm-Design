@@ -65,7 +65,6 @@ public class SortedTest {
 
 			//typeOfComparasion: See below 
 			for (int typeOfComparasion = 0; typeOfComparasion < 7; typeOfComparasion++) {
-			//Test nextFit() and firstFit() - unsorted
 
 				//Repeat the same test several times
 				for (int j = 0; j < noOfRep; j++) { 
@@ -100,9 +99,9 @@ public class SortedTest {
 							break;
 					}
 
-					//Test the selected generated shape list (depending on the case above)
-					//Pass the same list to both algorithms
-					
+					//Test the generated shape list (depending on the case above)
+					//And pass the same list to both algorithms (whether sorted or not) 
+
 					usedSheets = algorithmsTest.nextFit(generatedShapes); //Number of sheets
 					resultsNextFit[testNumber][typeOfComparasion] += usedSheets.size();
 						
