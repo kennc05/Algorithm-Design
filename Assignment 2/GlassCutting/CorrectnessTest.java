@@ -64,7 +64,7 @@ public class CorrectnessTest {
 			ruleTest2.add(new Shape(50,50));
 		}
 		
-		for (int test= 0; test < 5; test++) {
+		for (int test= 1; test < 6; test++) {
 
 			System.out.println("\n*********** Running test "+test+ " *********** ");
 			List<Shape> testToRun = new ArrayList<Shape>();
