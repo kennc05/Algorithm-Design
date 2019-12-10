@@ -106,8 +106,6 @@ public class CorrectnessTest {
 				currentSheet.printSheet();
 				sheetCount++;
 			}
-
-			usedSheets =  new ArrayList<Sheet>();
 			
 			sheetCount = 1;
 			System.out.println("\n*********** firstFit() testing\n");
