@@ -99,8 +99,10 @@ public class SortedTest {
 							Collections.sort(generatedShapes, Shape.compareByArea.reversed());
 							break;
 					}
+
 					//Test the selected generated shape list (depending on the case above)
 					//Pass the same list to both algorithms
+					
 					usedSheets = algorithmsTest.nextFit(generatedShapes); //Number of sheets
 					resultsNextFit[testNumber][typeOfComparasion] += usedSheets.size();
 						
