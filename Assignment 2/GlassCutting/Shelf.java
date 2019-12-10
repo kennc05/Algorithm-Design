@@ -77,7 +77,6 @@ public class Shelf {
 	}
 
 	//HELPER FUNCTION: Attempts to add a shape to shelf, if it is the first shape on shelf, then add it.
-	//It also checks if the shape limit has been reached first. 
 	//If the limit hasn't been reached then: Add shape (1) By its original orientation (2) If it fails, by its rotated orientation
 	public boolean attemptAddShapeToShelf (Shape currentShape, Sheet currentSheet) {
 		if(getShapes().size() == 0) { //If a shelf is empty

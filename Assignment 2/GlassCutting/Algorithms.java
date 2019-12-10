@@ -121,10 +121,9 @@ public class Algorithms {
 					
 					// Go through every shelf within that sheet to add a shape
 					for (int j = 0; j < currentSheet.getShelves().size() && !shapeAdded; j++) {
-						currentShelf = currentSheet.getShelves().get(j);
-						// Try to add current shape to current shelf
+						currentShelf = currentSheet.getShelves().get(j); // Get the next current shelf
 						if (currentShelf.attemptAddShapeToShelf(copyOfShape, currentSheet)) {
-							shapeAdded = true; //Stop iterating through shelves and sheets
+							shapeAdded = true; //Stop iterating through shelves and sheets as shape has been added to a shelf
 						}
 					}
 				}
@@ -141,7 +140,7 @@ public class Algorithms {
 
 			for (int i = 0; i < usedSheets.size() && !shapeAdded; i++) {
 				currentSheet = usedSheets.get(i); // Get the current sheet
-				if (currentSheet.attemptAddShelfToSheet(currentShelf)) { // Shelf can be added to sheet
+				if (currentSheet.attemptAddShelfToSheet(currentShelf)) { // Shelf can be added to sheet by checking it can fit
 					currentSheet.addShelf(currentShelf); // Add the shelf to the sheet - whether rotated or not
 					shapeAdded = true; //stop iterating through sheets
 				}
