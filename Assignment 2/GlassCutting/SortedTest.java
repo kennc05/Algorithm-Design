@@ -100,10 +100,11 @@ public class SortedTest {
 							break;
 					}
 					//Test the selected generated shape list (depending on the case above)
-
+					//Pass the same list to both algorithms
 					usedSheets = algorithmsTest.nextFit(generatedShapes); //Number of sheets
 					resultsNextFit[testNumber][typeOfComparasion] += usedSheets.size();
 						
+					//The list will remain unchanged as in both nextFit() and firstFit() I make a copy of the shape before rotating the shape to fit it in
 					usedSheets = algorithmsTest.firstFit(generatedShapes); //Number of sheets
 					resultsFirstFit[testNumber][typeOfComparasion] += usedSheets.size();
 				}
@@ -112,7 +113,6 @@ public class SortedTest {
 				resultsNextFit[testNumber][typeOfComparasion] = resultsNextFit[testNumber][typeOfComparasion] / noOfRep;
 				resultsFirstFit[testNumber][typeOfComparasion] = resultsFirstFit[testNumber][typeOfComparasion] / noOfRep;
 			}
-
 			//Increase no of shapes to generate
 			noOfShapes+= increment;
 		}

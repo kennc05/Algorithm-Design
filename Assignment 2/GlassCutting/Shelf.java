@@ -103,7 +103,6 @@ public class Shelf {
 		usedWidth -= shapes.get(0).getWidth();
 		shapes.get(0).rotateShape();
 		usedWidth += shapes.get(0).getWidth();
-
 	}
 
 	//HELPER FUNCTION: To output information about a shelf

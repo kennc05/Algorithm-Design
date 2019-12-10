@@ -94,8 +94,9 @@ public class Sheet {
 				shelf.rotateShelf(); //Go back to original orientation
 				return false;
 			}
+			//Rotating shape in shelf does help 
+			//shape.rotateShape();//rotate back to original orientation
 		}
-		//Rotating shape in shelf does help
 		return true; 
 	}
 

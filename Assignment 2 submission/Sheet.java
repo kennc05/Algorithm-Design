@@ -102,7 +102,7 @@ public class Sheet {
 	//HELPER FUNCTION: Returns how many more shape can be added to a sheet
 	public int checkShapeLimit () {
 		int allowedShapes = SHAPE_LIMIT; 
-		for (Shelf currentShelf : this.shelves) {
+		for (Shelf currentShelf : shelves) {
 			allowedShapes -= currentShelf.getShapes().size();
 		}
 		return allowedShapes;

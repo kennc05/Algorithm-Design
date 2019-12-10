@@ -1,3 +1,4 @@
+
 /**
  * @Purpose: The CorrectnessTest class is used to validate the correctness of
  *           the implemented algorithms. You can add additional methods if you
@@ -7,8 +8,8 @@
  * @since 30/10/2019 extended by Kenneth 17045066
  */
 
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CorrectnessTest {
@@ -65,36 +66,65 @@ public class CorrectnessTest {
 		}
 
 		//Depending on the test put in this variable, it will be passed onto both nextFit and firstFit
-		List<Shape> testToRun = ruleTest2;
+		
+		
+		for (int test= 0; test < 5; test++) {
+
+			System.out.println("\n*********** Running test "+test+ " *********** ");
+			List<Shape> testToRun = new ArrayList<Shape>();
+
+			switch(test) {
+				case 0:
+				testToRun = logicTest1;
+				break;
+
+				case 1:
+				testToRun = logicTest2;
+				break;
+
+				case 2:
+				testToRun = logicTest3;
+				break;
+
+				case 3:
+				testToRun = ruleTest1;
+				break;
+
+				case 4:
+				testToRun = ruleTest2;
+				break;
+			}
+
+			System.out.println("\n*********** nextFit() testing\n");
+			usedSheets = algorithmsTest.nextFit(testToRun);
+			System.out.println("Used number of sheets for next fit: "+usedSheets.size());
+
+			int sheetCount = 1;
+			for (Sheet currentSheet : usedSheets) {
+				System.out.println("\n----------------------------------------------- \n");
+				System.out.println("Sheet "+sheetCount+" information\n");
+				System.out.printf("Sheet "+sheetCount);
+				currentSheet.printSheet();
+				sheetCount++;
+			}
+
+			usedSheets =  new ArrayList<Sheet>();
+			
+			sheetCount = 1;
+			System.out.println("\n*********** firstFit() testing\n");
+			usedSheets = algorithmsTest.firstFit(testToRun);
+			System.out.println("Used number of sheets for first fit: "+usedSheets.size());
+			
+			sheetCount = 1; //Reset sheet count
+			for (Sheet currentSheet : usedSheets) {
+				System.out.println("\n----------------------------------------------- \n");
+				System.out.println("Sheet "+sheetCount+" information\n");
+				System.out.printf("Sheet "+sheetCount);
+				currentSheet.printSheet();
+				sheetCount++;
+			}
 
 
-		System.out.println("\n*********** nextFit() testing ************* \n");
-		usedSheets = algorithmsTest.nextFit(testToRun);
-		System.out.println("Used number of sheets for next fit: "+usedSheets.size());
-
-		int sheetCount = 1;
-		for (Sheet currentSheet : usedSheets) {
-			System.out.println("\n********************************************* \n");
-			System.out.println("Sheet "+sheetCount+" information\n");
-			System.out.printf("Sheet "+sheetCount);
-			currentSheet.printSheet();
-			sheetCount++;
-		}
-		
-		usedSheets =  new ArrayList<Sheet>();
-		
-		sheetCount = 1;
-		System.out.println("\n*********** firstFit() testing ************* \n");
-		usedSheets = algorithmsTest.firstFit(testToRun);
-		System.out.println("Used number of sheets for first fit: "+usedSheets.size());
-		
-		sheetCount = 1; //Reset sheet count
-		for (Sheet currentSheet : usedSheets) {
-			System.out.println("\n********************************************* \n");
-			System.out.println("Sheet "+sheetCount+" information\n");
-			System.out.printf("Sheet "+sheetCount);
-			currentSheet.printSheet();
-			sheetCount++;
 		}
 
 	}

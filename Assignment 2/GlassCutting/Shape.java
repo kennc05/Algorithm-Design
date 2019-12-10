@@ -56,12 +56,11 @@ public class Shape implements Comparable<Shape> {
 	//HELPER FUNCTION: Rotate shape 90 degrees by swapping width and height 
 	public void rotateShape () {
 		int tempWidth = sWidth;
-
 		sWidth = sHeight;
 		sHeight = tempWidth;
-
 	}
 
+	
 	public int getArea () {
 		return getWidth() * getHeight();
 	}
