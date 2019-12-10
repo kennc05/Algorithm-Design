@@ -63,9 +63,6 @@ public class CorrectnessTest {
 		for (int i = 0; i < 25; i++) {
 			ruleTest2.add(new Shape(50,50));
 		}
-
-		//Depending on the test put in this variable, it will be passed onto both nextFit and firstFit
-		
 		
 		for (int test= 0; test < 5; test++) {
 
@@ -120,10 +117,6 @@ public class CorrectnessTest {
 				currentSheet.printSheet();
 				sheetCount++;
 			}
-
-
 		}
-
 	}
-
 }
