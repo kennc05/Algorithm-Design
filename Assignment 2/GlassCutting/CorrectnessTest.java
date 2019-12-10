@@ -36,7 +36,11 @@ public class CorrectnessTest {
 		logicTest1.add(new Shape(68, 76));
 	
 
-		List<Shape> logicTest2 = logicTest1;
+		List<Shape> logicTest2 = new ArrayList<Shape>();
+		logicTest2.add(new Shape(101, 134));
+		logicTest2.add(new Shape(51, 98));
+		logicTest2.add(new Shape(152, 100));
+		logicTest2.add(new Shape(68, 76));
 		logicTest2.add(new Shape(110, 82));
 		logicTest2.add(new Shape(100, 50));
 
@@ -70,23 +74,23 @@ public class CorrectnessTest {
 			List<Shape> testToRun = new ArrayList<Shape>();
 
 			switch(test) {
-				case 0:
+				case 1:
 				testToRun = logicTest1;
 				break;
 
-				case 1:
+				case 2:
 				testToRun = logicTest2;
 				break;
 
-				case 2:
+				case 3:
 				testToRun = logicTest3;
 				break;
 
-				case 3:
+				case 4:
 				testToRun = ruleTest1;
 				break;
 
-				case 4:
+				case 5:
 				testToRun = ruleTest2;
 				break;
 			}
