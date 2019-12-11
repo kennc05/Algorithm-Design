@@ -47,7 +47,7 @@ public class Algorithms {
 
 		for (Shape currentShape : shapes) // for every shape in the shapes list
 		{
-			Shape copyOfShape = new Shape(currentShape.getWidth(), currentShape.getHeight());  //So that original shape in shapes list does not get changed or potentially rotated after it has been added in by the algorithm
+			Shape copyOfShape = new Shape(currentShape.getWidth(), currentShape.getHeight());  //So that original shape in shapes list does not get changed or potentially rotated after it has been added in by the algorithm as the same list will be reused later in testing
 			// Try to add current shape to current shelf - checking that the shape limit hasn't been reached
 			// In this implementation, a shelf isn't added to a sheet until it is considered "full", which is why I do currentSheet.checkShapeLimit() - currentShelf.getShapes.size() - 1
 			if (currentSheet.checkShapeLimit() - currentShelf.getShapes().size() - 1 == -1 || !currentShelf.attemptAddShapeToShelf(copyOfShape, currentSheet)) {
@@ -78,6 +78,7 @@ public class Algorithms {
 		usedSheets.add(currentSheet);
 		return usedSheets;
 	}
+
 
 	/**
 	 * This method is used to implement the first fit algorithm
@@ -150,7 +151,7 @@ public class Algorithms {
 				continue; // go to next shape in list
 			}
 
-			//At this point there is not fi for the new shelf with shape, make a new sheet and place shelf inside it 
+			//At this point there is no fit for the new shelf with shape, make a new sheet and place shelf inside it 
 			//On the first run, the algorithm will get to this point to initialise the shelves and sheets available to check 
 			currentSheet = new Sheet();
 			currentSheet.addShelf(currentShelf);
