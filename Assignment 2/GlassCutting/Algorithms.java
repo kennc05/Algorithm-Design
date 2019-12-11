@@ -113,7 +113,7 @@ public class Algorithms {
 
 		for (Shape currentShape : shapes) // For every shape in the shapes list
 		{
-			Shape copyOfShape = new Shape(currentShape.getWidth(), currentShape.getHeight());  //So that original shape in shapes list does not get changed or potentially rotated after it has been added in by the algorithm
+			Shape copyOfShape = new Shape(currentShape.getWidth(), currentShape.getHeight());  //So that original shape in shapes list does not get changed or potentially rotated after it has been added in by the algorithm as the list will be passed onto another algorithm in tests
 			Boolean shapeAdded = false; // This will indicate if a shape was added to a shelf / sheet
 			
 			for (int i = 0; i < usedSheets.size() && !shapeAdded; i++) {
