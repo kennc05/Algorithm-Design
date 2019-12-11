@@ -95,7 +95,7 @@ public class CorrectnessTest {
 				break;
 			}
 
-			/*
+			
 			System.out.println("\n*********** nextFit() testing\n");
 			usedSheets = algorithmsTest.nextFit(testToRun);
 			System.out.println("Used number of sheets for next fit: "+usedSheets.size());
@@ -108,11 +108,7 @@ public class CorrectnessTest {
 				currentSheet.printSheet();
 				sheetCount++;
 			}
-			*/
-			
 
-			
-			int sheetCount = 1;
 			System.out.println("\n*********** firstFit() testing\n");
 			usedSheets = algorithmsTest.firstFit(testToRun);
 			System.out.println("Used number of sheets for first fit: "+usedSheets.size());
